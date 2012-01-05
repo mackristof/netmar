@@ -1,0 +1,14 @@
+European Marine Information System (EUMIS) repository
+
+NETMAR aims to develop a pilot European Marine Information System (EUMIS)
+for searching, downloading and integrating satellite, in situ and model data
+from ocean and coastal areas. It will be a user-configurable system offering
+flexible service discovery, access and chaining facilities using OGC, OPeNDAP
+and W3C standards.
+
+This git repo contains a set of portlets (system components) which are used
+in EUMIS. All portlets are open source, licensed under GPL.
+
+NETMAR home page: http://netmar.nersc.no
+
+(C) 2010-2012 NETMAR Consortium
