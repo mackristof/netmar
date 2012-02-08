@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="1.2" 
+              xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+              xmlns:bridge="http://myfaces.apache.org/portletbridge">
+    
+    <lifecycle>
+        <phase-listener>fr.ifremer.seagis.geoviewer.listener.SessionListener</phase-listener>
+    </lifecycle>
+    <application>
+        <view-handler> org.jboss.portletbridge.application.PortletViewHandler</view-handler>
+        <state-manager>org.jboss.portletbridge.application.PortletStateManager</state-manager>
+        <locale-config>
+          <default-locale>en_US</default-locale>
+          <supported-locale>en_US</supported-locale>
+          <supported-locale>fr_FR</supported-locale>
+        </locale-config>
+        
+        <resource-bundle>
+            <base-name>fr.ifremer.seagis.bundle.messages</base-name>
+            <var>msg</var>
+        </resource-bundle>
+        
+    </application>
+    
+    
+    <managed-bean>
+        <description>Geoviewer Controller Bean</description>
+        <managed-bean-name>geoviewer</managed-bean-name>
+        <managed-bean-class>fr.ifremer.seagis.geoviewer.controller.GeoviewerController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    
+    
+</faces-config>

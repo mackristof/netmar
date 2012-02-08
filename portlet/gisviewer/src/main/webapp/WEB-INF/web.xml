@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee         http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <display-name>geoviewer</display-name>
+    <description>MapFaces demo</description>
+    <login-config>
+        <auth-method>BASIC</auth-method>
+    </login-config>    
+    <session-config>
+        <session-timeout>0</session-timeout>
+    </session-config>
+    
+<!-- portlet courante-->
+    <!--servlet>
+        <servlet-name>sxt-geoviewer</servlet-name>
+        <servlet-class>com.liferay.portal.kernel.servlet.PortletServlet</servlet-class>
+        <init-param>
+            <param-name>portlet-class</param-name>
+            <param-value>javax.portlet.faces.GenericFacesPortlet</param-value>
+        </init-param>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sxt-geoviewer</servlet-name>
+        <url-pattern>/sxt-geoviewer/*</url-pattern>
+    </servlet-mapping-->
+<!--    <servlet>
+        <servlet-name>sxt-geoviewer-1.0-SNAPSHOT</servlet-name>
+        <servlet-class>com.liferay.portal.kernel.servlet.PortletServlet</servlet-class>
+        <init-param>
+            <param-name>portlet-class</param-name>
+            <param-value>javax.portlet.faces.GenericFacesPortlet</param-value>
+        </init-param>
+        <load-on-startup>0</load-on-startup>
+    </servlet>-->
+<!--    <servlet-mapping>
+        <servlet-name>sxt-geoviewer-1.0-SNAPSHOT</servlet-name>
+        <url-pattern>/sxt-geoviewer-1.0-SNAPSHOT/*</url-pattern>
+    </servlet-mapping>-->
+    
+    
+<!-- JSF -->
+    
+    <!-- Mandatory -->
+    <context-param>
+        <param-name>javax.faces.CONFIG_FILES</param-name>
+        <param-value>/WEB-INF/faces-config*</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <context-param>
+        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+        <param-value>.xhtml</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>server</param-value>
+    </context-param>
+    <context-param>
+        <param-name>com.sun.faces.validateXml</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>com.sun.faces.verifyObjects</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    
+    <!-- Optional -->
+    <!--Pay attention to <location> element. It should contain proper path
+   to error pages according to Faces Servlet mapping or exact viewId.  -->
+    <error-page>
+        <exception-type>javax.servlet.ServletException</exception-type>
+        <location>/faces/error.xhtml</location>
+    </error-page>
+    <error-page>
+        <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+        <location>/faces/error.xhtml</location>
+    </error-page>
+    <error-page>
+        <exception-type>javax.faces.FacesException</exception-type>
+        <location>/faces/error.xhtml</location>
+    </error-page>    
+    <!-- Use jsf 1.1 restore view way instead of jsf 1.2 -->
+    <context-param>
+        <param-name>com.sun.faces.enableRestoreView11Compatibility</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    
+    
+<!-- JSP only -->
+    
+    <!-- Mandatory -->
+    <!--context-param>
+        <param-name>javax.portlet.faces.renderPolicy</param-name>
+        <param-value>NEVER_DELEGATE</param-value>
+    </context-param-->
+    
+    
+<!-- FACELETS -->
+    
+    <context-param>
+        <param-name>facelets.REFRESH_PERIOD</param-name>
+        <param-value>-1</param-value>
+    </context-param>
+    <!-- Optional -->
+    <!--context-param>
+        <param-name>facelets.DEVELOPMENT</param-name>
+        <param-value>false</param-value>
+    </context-param-->
+    <!-- to avoid the log message : 
+    facelets.RECREATE_VALUE_EXPRESSION_ON_BUILD_BEFORE_RESTORE is set to 'true' 
+    but facelets.BUILD_BEFORE_RESTORE is set to 'false' or unset. To use 
+    facelets.RECREATE_VALUE_EXPRESSION_ON_BUILD_BEFORE_RESTORE you must also set
+    facelets.BUILD_BEFORE_RESTORE to 'true'!-->
+    <context-param>
+        <param-name>facelets.RECREATE_VALUE_EXPRESSION_ON_BUILD_BEFORE_RESTORE</param-name>
+        <param-value>false</param-value>
+    </context-param>
+<!-- FACELETS and RICHFACES -->
+    
+    <!--Mandatory for servlet environment-->
+    <!--context-param>
+     <param-name>org.ajax4jsf.VIEW_HANDLERS</param-name>
+     <param-value>com.sun.facelets.FaceletViewHandler</param-value>
+  </context-param-->
+  
+  
+<!-- FACELETS and PORTLET-->
+    
+    <!-- Mandatory -->    
+    <context-param>
+        <param-name>javax.portlet.faces.RENDER_POLICY</param-name>
+        <param-value>ALWAYS_DELEGATE</param-value>
+    </context-param>
+  
+  
+<!-- PortletBridge -->
+    
+    <!-- Mandatory for portlet environment-->
+    <context-param>
+        <param-name>org.ajax4jsf.VIEW_HANDLERS</param-name>
+        <param-value>org.jboss.portletbridge.application.FaceletPortletViewHandler</param-value>
+    </context-param>
+    
+    <!-- Mandatory if you want to use  MyFaces implementation of your jar file, doesn't work for Mojarra impl -->
+    
+    <!--context-param>
+        <param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
+        <param-value>true</param-value>
+    </context-param-->
+    
+    <!-- Mandatory for SEAM -->
+    
+    <!--<context-param>
+        <param-name>org.jboss.portletbridge.ExceptionHandler</param-name>
+        <param-value>org.jboss.portletbridge.SeamExceptionHandlerImpl</param-value>
+    </context-param>-->
+    
+    <!-- Mandatory for SEAM and portletbridge 2.0.0 Beta -->
+    
+    <!--<context-param>
+        <param-name>javax.faces.LIFECYCLE_ID</param-name>
+        <param-value>SEAM_PORTLET</param-value>
+    </context-param>-->
+    
+    <!-- Optional  for richfaces-->
+    
+    <!--Richfaces does not account for multiple components on the same portal page by default.
+    This following web.xml renders all RichFaces component javascript to be portal friendly.
+    -->
+    <context-param>
+        <param-name>org.jboss.portletbridge.WRAP_SCRIPTS</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    
+    
+<!-- RICHFACES -->
+    
+    <!-- Mandatory if you use A4J push -->
+    <context-param>
+        <param-name>A4J.AJAX.Push.URL</param-name>
+        <param-value>/portlets/faces/a4j.push</param-value>
+    </context-param>
+    
+    <!-- Optional -->
+    <context-param>
+        <param-name>org.ajax4jsf.RESOURCE_URI_PREFIX</param-name>
+        <param-value>rfRes</param-value>
+    </context-param>
+    <!--<context-param>
+        <param-name>org.ajax4jsf.cache.LRU_MAP_CACHE_SIZE</param-name>
+        <param-value>2048</param-value>
+    </context-param>-->
+    <!--context-param>
+        <param-name>org.ajax4jsf.SKIN</param-name>
+        <param-value>blueSky</param-value>
+    </context-param-->
+    <!-- <context-param>
+        <param-name>org.ajax4jsf.handleViewExpiredOnClient</param-name>
+        <param-value>true</param-value>
+    </context-param>-->
+    <!-- we should specify to none because loadScript et loadStyle
+    load JSs and CSSs files in uor portlet config file jboss-portlet.xml or liferay-portlet.xml-->
+    <context-param>
+        <param-name>org.richfaces.LoadStyleStrategy</param-name>
+        <param-value>NONE</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.richfaces.LoadScriptStrategy</param-name>
+        <param-value>NONE</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.ajax4jsf.COMPRESS_SCRIPT</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.ajax4jsf.COMPRESS_STYLE</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <!--context-param>
+        <param-name>org.ajax4jsf.xmlparser.ORDER</param-name>
+        <param-value>NEKO</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.richfaces.CONTROL_SKINNING</param-name>
+        <param-value>enable</param-value>
+    </context-param>
+    
+-->
+
+
+<!-- RICHFACES without SEAM -->
+    
+    <!-- Mandatory -->
+    <filter>
+        <display-name>Ajax4jsf Filter</display-name>
+        <filter-name>ajax4jsf</filter-name>
+        <filter-class>org.ajax4jsf.Filter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ajax4jsf</filter-name>
+        <servlet-name>Faces Servlet</servlet-name>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+    
+    
+<!-- SEAM -->
+    
+    <!-- Mandatory -->
+    
+    <!--<listener>
+        <listener-class>org.jboss.seam.servlet.SeamListener</listener-class>
+    </listener>
+    <filter>
+        <filter-name>Seam Filter</filter-name>
+        <filter-class>org.jboss.seam.servlet.SeamFilter</filter-class>
+        <init-param>
+            <param-name>createTempFiles</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>maxRequestSize</param-name>
+            <param-value>100000</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>Seam Filter</filter-name>
+        <servlet-name>Faces Servlet</servlet-name>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>-->
+    
+    
+<!-- MAPFACES -->
+    
+    <!-- Mandatory -->
+    <servlet>
+        <servlet-name>Map Resource Servlet</servlet-name>
+        <servlet-class>org.mapfaces.servlet.ResourceServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Map Resource Servlet</servlet-name>
+        <url-pattern>/mfRes/*</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Optional --> 
+    <listener>
+        <description>Run a ScheduledExecutorService which execute the reload of GetCapabilities every 24 hours.</description>
+        <listener-class>org.mapfaces.listener.SchedulerListener</listener-class>
+    </listener>
+    <!--context-param>
+        <description>Time units of period and time delay properties of scheduler.
+        See java.​util.​concurrent.TimeUnit class for possible values. Default values is DAYS.</description>
+        <param-name>org.mapfaces.SCHEDULER_UNITS</param-name>
+        <param-value>MINUTES</param-value>
+    </context-param>
+    <context-param>
+        <description>Period between 2 executions of scheduler tasks. Time units 
+        is define by SCHEDULER_UNITS context param. Default values is 1.</description>
+        <param-name>org.mapfaces.SCHEDULER_PERIOD</param-name>
+        <param-value>1</param-value>
+    </context-param>
+    <context-param>
+        <description>Delay before the first execution of scheduler tasks. Time 
+        units is define by SCHEDULER_UNITS context param. Default values is 1.</description>
+        <param-name>org.mapfaces.SCHEDULER_DELAY</param-name>
+        <param-value>0</param-value>
+    </context-param>    
+    <context-param>
+        <description>Define if you want to use the geotoolkit MonoLine log 
+        formatter or the one defines in WEB-INF/classes/logging.properties. Default to false.</description>
+        <param-name>org.mapfaces.USE_GEOTK_FORMATTER</param-name>
+        <param-value>false</param-value>
+    </context-param-->
+    
+<!-- PRIMEFACES -->
+    
+    <!-- Mandatory -->
+    <!--servlet>
+       <servlet-name>Resource Servlet</servlet-name>
+       <servlet-class>org.primefaces.resource.ResourceServlet</servlet-class>
+       <load-on-startup>3</load-on-startup>
+   </servlet>
+   <servlet-mapping>
+       <servlet-name>Resource Servlet</servlet-name>
+       <url-pattern>/primefaces_resource/*</url-pattern>
+   </servlet-mapping-->
+   
+   
+<!-- LIFERAY -->
+    
+    <filter>
+        <filter-name>Cache Filter - Resource</filter-name>
+        <filter-class>com.liferay.portal.kernel.servlet.PortalClassLoaderFilter</filter-class>
+        <init-param>
+            <param-name>filter-class</param-name>
+            <param-value>com.liferay.portal.servlet.filters.cache.CacheFilter</param-value>
+        </init-param>
+        <init-param>
+            <param-name>pattern</param-name>
+            <param-value>2</param-value>
+        </init-param>
+    </filter>
+    <filter>
+        <filter-name>Cache Filter - Resource CSS JSP</filter-name>
+        <filter-class>com.liferay.portal.kernel.servlet.PortalClassLoaderFilter</filter-class>
+        <init-param>
+            <param-name>filter-class</param-name>
+            <param-value>com.liferay.portal.servlet.filters.cache.CacheFilter</param-value>
+        </init-param>
+        <init-param>
+            <param-name>url-regex-pattern</param-name>
+            <param-value>.+/css\.jsp</param-value>
+        </init-param>
+        <init-param>
+            <param-name>pattern</param-name>
+            <param-value>2</param-value>
+        </init-param>
+    </filter>
+    <filter>
+        <filter-name>Header Filter</filter-name>
+        <filter-class>com.liferay.portal.kernel.servlet.PortalClassLoaderFilter</filter-class>
+        <init-param>
+            <param-name>filter-class</param-name>
+            <param-value>com.liferay.portal.servlet.filters.header.HeaderFilter</param-value>
+        </init-param>
+        <init-param>
+            <param-name>Cache-Control</param-name>
+            <param-value>max-age=315360000, public</param-value>
+        </init-param>
+        <init-param>
+            <param-name>Expires</param-name>
+            <param-value>315360000</param-value>
+        </init-param>
+    </filter>
+    <filter>
+        <filter-name>Header Filter - CSS JSP</filter-name>
+        <filter-class>com.liferay.portal.kernel.servlet.PortalClassLoaderFilter</filter-class>
+        <init-param>
+            <param-name>filter-class</param-name>
+            <param-value>com.liferay.portal.servlet.filters.header.HeaderFilter</param-value>
+        </init-param>
+        <init-param>
+            <param-name>url-regex-pattern</param-name>
+            <param-value>.+/css\.jsp</param-value>
+        </init-param>
+        <init-param>
+            <param-name>Cache-Control</param-name>
+            <param-value>max-age=315360000, public</param-value>
+        </init-param>
+        <init-param>
+            <param-name>Expires</param-name>
+            <param-value>315360000</param-value>
+        </init-param>
+    </filter>
+    <filter>
+        <filter-name>GZip Filter</filter-name>
+        <filter-class>com.liferay.portal.kernel.servlet.PortalClassLoaderFilter</filter-class>
+        <init-param>
+            <param-name>filter-class</param-name>
+            <param-value>com.liferay.portal.servlet.filters.gzip.GZipFilter</param-value>
+        </init-param>
+    </filter>
+    <filter>
+        <filter-name>Minifier Filter</filter-name>
+        <filter-class>com.liferay.portal.kernel.servlet.PortalClassLoaderFilter</filter-class>
+        <init-param>
+            <param-name>filter-class</param-name>
+            <param-value>com.liferay.portal.servlet.filters.minifier.MinifierFilter</param-value>
+        </init-param>
+    </filter>
+    <filter>
+        <filter-name>Minifier Filter - CSS JSP</filter-name>
+        <filter-class>com.liferay.portal.kernel.servlet.PortalClassLoaderFilter</filter-class>
+        <init-param>
+            <param-name>filter-class</param-name>
+            <param-value>com.liferay.portal.servlet.filters.minifier.MinifierFilter</param-value>
+        </init-param>
+        <init-param>
+            <param-name>url-regex-pattern</param-name>
+            <param-value>.+/css\.jsp</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>Cache Filter - Resource</filter-name>
+        <url-pattern>*.css</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Cache Filter - Resource</filter-name>
+        <url-pattern>*.html</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Cache Filter - Resource</filter-name>
+        <url-pattern>*.js</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Cache Filter - Resource CSS JSP</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Header Filter</filter-name>
+        <url-pattern>*.css</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Header Filter</filter-name>
+        <url-pattern>*.gif</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Header Filter</filter-name>
+        <url-pattern>*.html</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Header Filter</filter-name>
+        <url-pattern>*.ico</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Header Filter</filter-name>
+        <url-pattern>*.jpg</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Header Filter</filter-name>
+        <url-pattern>*.js</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Header Filter</filter-name>
+        <url-pattern>*.png</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Header Filter - CSS JSP</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>GZip Filter</filter-name>
+        <url-pattern>*.css</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>GZip Filter</filter-name>
+        <url-pattern>*.html</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>GZip Filter</filter-name>
+        <url-pattern>*.js</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>GZip Filter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Minifier Filter</filter-name>
+        <url-pattern>*.css</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Minifier Filter</filter-name>
+        <url-pattern>*.js</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Minifier Filter - CSS JSP</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+    <listener>
+        <listener-class>com.liferay.portal.kernel.servlet.PortletContextListener</listener-class>
+    </listener>
+    <!--jsp-config>
+       <taglib>
+           <taglib-uri>http://java.sun.com/portlet_2_0</taglib-uri>
+           <taglib-location>/WEB-INF/tld/liferay-portlet.tld</taglib-location>
+       </taglib>
+       <taglib>
+           <taglib-uri>http://liferay.com/tld/portlet</taglib-uri>
+           <taglib-location>/WEB-INF/tld/liferay-portlet-ext.tld</taglib-location>
+       </taglib>
+       <taglib>
+           <taglib-uri>http://liferay.com/tld/security</taglib-uri>
+           <taglib-location>/WEB-INF/tld/liferay-security.tld</taglib-location>
+       </taglib>
+       <taglib>
+           <taglib-uri>http://liferay.com/tld/theme</taglib-uri>
+           <taglib-location>/WEB-INF/tld/liferay-theme.tld</taglib-location>
+       </taglib>
+       <taglib>
+           <taglib-uri>http://liferay.com/tld/ui</taglib-uri>
+           <taglib-location>/WEB-INF/tld/liferay-ui.tld</taglib-location>
+       </taglib>
+       <taglib>
+           <taglib-uri>http://liferay.com/tld/util</taglib-uri>
+           <taglib-location>/WEB-INF/tld/liferay-util.tld</taglib-location>
+       </taglib>
+   </jsp-config-->
+</web-app>

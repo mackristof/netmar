@@ -1,0 +1,1428 @@
+but/*************************************************************************/
+/** GENERAL **************************************************************/
+/*************************************************************************/
+
+/** Body **/
+/*body {
+  font-family:Arial,Helvetica,sans-serif;
+  background-color: #696969;
+  background-image: url("../img/bg_header.gif");
+  background-position: left top;
+  background-repeat: repeat-x;
+}*/
+html {
+    overflow: auto;
+}
+/** Forms ****************************************************************/
+
+/* conteneur des boutons (input ou a/span) d'actions (submit, clear, etc) */
+.geoviewerForm div.actions {
+}
+.geoviewerForm div.actions a.action {
+    margin: 0 10px 5px 0px;
+    -moz-border-radius:4px 4px 4px 4px;
+    border: 1px solid #000;
+    font-weight: normal;
+    font-size: 1.1em;
+    color: #000;
+    padding: 0px 8px 0px 8px;
+}
+.geoviewerForm div.actions a.action.ui-state-default {
+    background-image: url(../img/bg_button_default.gif);
+    background-repeat: repeat-x;
+    background-position: left bottom;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.geoviewerForm div.actions a.action.ui-state-hover, div.actions a.action.ui-state-active {
+    background-image: url(../img/bg_button_active.gif);
+    border-color: #ff7930;
+    color: #ff7930;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+
+.geoviewerForm .couche-utils .set01 a.button {
+    margin: 0 10px 0 5px;
+    -moz-border-radius:4px 4px 4px 4px;
+    border: 1px solid #000;
+    font-weight: normal;
+    font-size: 0.95em;
+    color: #000;
+    padding: 0px 8px 0px 8px;
+    line-height: 14px;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.geoviewerForm hr {
+    height: 1px;
+    border: none;
+    color: #aaa;
+    background-color: #aaa;
+}
+
+/** table ****************************************************************/
+.geoviewerForm table {
+    width: 100%;
+    border: 1px solid #a0a0a0;
+    text-align: left;
+    color: #3b3c3c;
+}
+
+.geoviewerForm thead tr th {
+    background: url("../img/bg_thead_table.png") repeat-x top left;
+    color: #fff;
+}
+
+.geoviewerForm th {
+    padding: 5px 10px 5px 10px;
+    border-right: 1px solid #a0a0a0;
+}
+
+.geoviewerForm td {
+    padding: 5px 10px 5px 10px;
+    border-right: 1px solid #a0a0a0;
+}
+
+.geoviewerForm tr.even {
+    background: url("../img/bg_tr_even_table.png") repeat top left;
+}
+
+/*************************************************************************/
+/** GENERAL CLASS ********************************************************/
+/*************************************************************************/
+
+/** ui-layout ************************************************************/
+
+.geoviewerForm .ui-layout-west {
+    background-color: #dedede;
+    border:1px solid #FFF;
+    -moz-border-radius:4px 4px 4px 4px;
+    background-image: url("../img/bg_west_center.gif");
+    background-position: top left;
+    background-repeat: repeat-x;
+}
+
+.geoviewerForm .ui-layout-center {
+    -moz-border-radius:4px 4px 4px 4px;
+    border:1px solid #FFFFFF;
+    background-color:#DEDEDE;
+    background-image: url("../img/bg_west_center.gif");
+    background-position: top left;
+    background-repeat: repeat-x;
+}
+
+.geoviewerForm .ui-layout-header {
+    margin: 10px 0 15px 12px;
+    font-weight: bold;
+    font-size: 1em;
+    color: #626262;
+}
+
+.geoviewerForm .ui-layout-center .ui-layout-header {
+    margin: 5px 0 5px 12px;
+}
+
+.geoviewerForm .ui-layout-center .ui-layout-header p {
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.geoviewerForm .ui-layout-content {
+    overflow : auto;
+    border-top    : solid 1px #FFF;
+    border-bottom : solid 1px #FFF;
+    margin : 5px 5px 15px 5px;
+}
+
+.geoviewerForm .ui-layout-center .ui-layout-content {
+    background-color: #fff;
+}
+
+.geoviewerForm .ui-layout-content .ui-layout-content {
+    margin : 0px;
+}
+
+.geoviewerForm .ui-layout-footer {
+    margin: 5px;
+}
+
+.geoviewerForm .inner-ui-layout-center {
+    height : 50%;
+}
+
+.geoviewerForm .ui-layout-resizer {
+    background: transparent none;
+    visibility: hidden;
+}
+
+/* le bouton placé dans une barre verticale, entre les panels placés à l'ouest et à l'est */
+.geoviewerForm .ui-layout-resizer-west,
+.geoviewerForm .ui-layout-resizer-east {
+    background-image : url(../img/icons/vertical_handle.gif);
+    background-repeat : no-repeat;
+    background-position: center center;
+}
+
+/* le bouton placé dans une barre horizontale, entre les panels placés au nord et au sud */
+.geoviewerForm .ui-layout-resizer-north,
+.geoviewerForm .ui-layout-resizer-south {
+    background-image : url(../img/icons/horizontal_handle.gif);
+    background-repeat : no-repeat;
+    background-position: center center;
+}
+
+.geoviewerForm .ui-layout-toggler {
+    background: transparent none;
+}
+
+
+/* mettre des bordures ssi la barre de redimensionnement est déjà dans un
+ * ui-layout-content cad dans un panel
+*/
+.geoviewerForm .ui-layout-content .ui-layout-resizer {
+    background-color : #DEDEDE;
+    border-top: 1px solid #FFF;
+    border-bottom: 1px solid #FFF;
+}
+
+.geoviewerForm #tabsPanels .ui-layout-resizer {
+    visibility: visible;
+}
+
+.geoviewerForm .inner-ui-layout-north  .ui-layout-content,
+.geoviewerForm .inner-ui-layout-center .ui-layout-content {
+    border : none;
+}
+
+.geoviewerForm #panelForm .ui-layout-center .ui-layout-content {
+    /*padding : 5px;*/
+    background-image : url(../img/full_map.jpg);
+}
+
+.geoviewerForm .affichage {
+    text-align: right;
+    font-size: 0.90em;
+    margin: 10px 2px 0 0 ;
+    color: #616161;
+    /*position: absolute;
+    bottom: 5px;
+    right: 5px;*/
+}
+.geoviewerForm .affichage a {
+    text-decoration: underline;
+}
+.geoviewerForm .affichage a:hover {
+    color: #F28033;
+}
+
+
+
+
+/** Icons ****************************************************************/
+
+.geoviewerForm .ui-layout-west .icon {
+    height: 16px;
+    width: 16px;
+    float: right;
+}
+
+/*.ui-layout-header .file-pdf .icon {
+  height:16px;
+  width:18px;
+}*/
+
+.geoviewerForm .search-results .icon {
+    height:16px;
+    width:16px;
+}
+
+.geoviewerForm .ui-state-hover .icon {
+    background-position : -24px 0;
+}
+
+.geoviewerForm .ui-state-active .icon {
+    background-position : -48px 0;
+}
+.geoviewerForm .ui-state-disabled .icon {
+    background-position : -72px 0;
+}
+
+.geoviewerForm .ui-layout-west .ui-state-hover .icon{
+    background-position : -16px 0;
+}
+
+.geoviewerForm .ui-layout-west .ui-state-active .icon{
+    background-position : -32px 0;
+}
+
+.geoviewerForm .ui-layout-west .ui-state-disabled .icon{
+    background-position : -48px 0;
+}
+
+.geoviewerForm .metadata {
+    background-image : url(../img/icons/metadata.png);
+}
+
+.geoviewerForm .print {
+    background-image : url(../img/icons/print.png);
+}
+
+.geoviewerForm .couche-add {
+    background-image:url("../img/icons/couche-add.png");
+}
+
+.geoviewerForm .extraction {
+    background-image:url("../img/icons/extraction.png");
+}
+
+.geoviewerForm .context-save {
+    background-image:url("../img/icons/context-save.png");
+}
+
+
+/** Toolbars *************************************************************/
+.geoviewerForm .button {
+    cursor : pointer;
+
+    position: relative;
+    float : left;
+
+    font-size : 12px;
+    font-family : serif;
+    line-height : 16px;
+
+    text-decoration:none !important;
+    text-align : center;
+
+    outline: 0;
+
+    /*margin:4px;*/
+    padding : 2px 4px 2px 4px;
+}
+
+.geoviewerForm .field .button {
+    float: none;
+    background-image:url("../img/bg_button_default.gif");
+    background-position:left bottom;
+    background-repeat:repeat-x;
+    font-family:Arial,Helvetica,sans-serif;
+    -moz-border-radius:4px 4px 4px 4px;
+    border:1px solid #000000;
+    color:#000000;
+    font-size:1.1em;
+    font-weight:normal;
+    margin:0 10px 5px 0;
+    padding:0 8px;
+}
+
+.geoviewerForm .field .button.ui-state-active,
+.geoviewerForm .field .button.ui-state-hover {
+    background-image: url(../img/bg_button_active.gif);
+    border-color: #ff7930;
+    color: #ff7930;
+}
+
+.geoviewerForm .button .ui-icon, /* jQuery CSS Framework */
+.geoviewerForm .button .icon {   /* MP CSS Framework */
+    position: absolute;
+    margin-left : -12px;
+    margin-top : -12px;
+    left : 50%;
+    top : 50%;
+}
+
+
+/* solo icon buttons must have block properties for the text-indent to work */
+.geoviewerForm .button-icon-solo {
+    display:block;
+    width:24px;
+    height : 24px;
+    text-indent: -9999px;
+    float: left;
+}
+
+.geoviewerForm .button-icon-left {
+    padding-left : 16px;
+}
+
+.geoviewerForm .button-icon-left .ui-icon,
+.geoviewerForm .button-icon-left .icon{
+    left  : 0;
+    margin-left : 0;
+    right : auto;
+}
+
+.geoviewerForm .button-icon-right {
+    padding-right : 16px;
+}
+
+.geoviewerForm .button-icon-right .ui-icon,
+.geoviewerForm .button-icon-right .icon {
+    left : auto;
+    right : 0;
+}
+
+/* buttonSet */
+.geoviewerForm .buttonSet {
+    float : left;
+    margin : 0;
+    background-image:url("../img/icons/button-separator.png");
+    background-position: right 3px;
+    background-repeat: no-repeat;
+    padding-right: 11px;
+}
+
+.geoviewerForm .buttonSet .button {
+    float : left;
+}
+
+/* toolbar */
+.geoviewerForm .toolbar {
+    margin : 0;
+    padding: 2px;
+}
+
+.geoviewerForm .toolbar .buttonSet {
+    float : left;
+    margin-right : 10px;
+}
+.geoviewerForm .toolbar .set06, 
+.geoviewerForm .toolbar .set05, 
+.geoviewerForm .toolbar .set04 {
+    float : right;
+    margin-left : 10px;
+    margin-right: 0;
+}
+
+.geoviewerForm .toolbar.sortable .buttonSet {
+    float : left;
+    margin-right : 5px;
+    margin-left : 5px;
+}
+
+
+/** collapsible **********************************************************/
+
+.geoviewerForm .ui-collapsible {
+    margin-bottom : 1px;
+}
+
+.geoviewerForm .ui-collapsible .ui-collapsible-header {
+    cursor: pointer;
+    position: relative;
+    margin-top: 1px;
+}
+.geoviewerForm .ui-collapsible-disabled .ui-collapsible-header {
+    cursor: default;
+    position: relative;
+    margin-top: 1px;
+}
+.geoviewerForm .ui-collapsible .ui-collapsible-li-fix {
+    display: inline;
+}
+.geoviewerForm .ui-collapsible .ui-collapsible-header-active {
+    border-bottom: 0 !important;
+}
+.geoviewerForm .ui-collapsible .ui-collapsible-header a {
+    display: block; font-size: 1em; padding: .3em .3em .3em .5em;
+}
+.geoviewerForm .ui-collapsible-disabled .ui-collapsible-header a {
+    cursor: default;
+}
+/* IE7-/Win - Fix extra vertical space in lists */
+.geoviewerForm .ui-collapsible a {
+    zoom: 1;
+}
+.geoviewerForm .ui-collapsible-icons .ui-collapsible-header a {
+    padding-left: 1.8em;
+}
+.geoviewerForm .ui-collapsible .ui-collapsible-header .ui-icon {
+    position: absolute; left: 0; top: 50%; margin-top: -8px;
+}
+.geoviewerForm .ui-collapsible .ui-collapsible-content {
+    /*overflow: auto;*/
+    display: none;
+    font-size: 0.95em;
+}
+
+
+
+.geoviewerForm .ui-collapsible .ui-collapsible-content ui-corner-bottom {
+    padding-bottom: 0px;
+}
+
+.geoviewerForm .ui-collapsible .ui-collapsible-content > div,
+.geoviewerForm .ui-collapsible .ui-collapsible-content > fieldset  {
+    margin-left: 10px;
+    padding-top: 5px;
+}
+
+
+/*.ui-collapsible .ui-collapsible-content ul, .ui-collapsible .ui-collapsible-content div {
+  padding-left: 10px;
+}*/
+
+.geoviewerForm .ui-collapsible .ui-collapsible-content-active {
+    display: block;
+}
+
+
+.geoviewerForm .ui-collapsible .ui-collapsible-content.tree > ul,
+.geoviewerForm .ui-collapsible .ui-collapsible-content.tree > div,
+.geoviewerForm .ui-content.tree > ul {
+    padding: 5px 10px 0;
+}
+
+
+/** One Move Step ********************************************************/
+
+/* Text */
+.geoviewerForm .moveOneStep h2 {
+    font-size: 1em;
+    margin-left: 22px;
+    margin-top: 0px;
+}
+.geoviewerForm .moveOneStep .ui-collapsible .ui-collapsible-content {
+    padding: 0em 1.3em;
+}
+
+.geoviewerForm .ui-collapsible .ui-collapsible-content ul.moveOneStep, 
+.geoviewerForm .ui-collapsible .ui-collapsible-content .moveOneStep div {
+    padding-left: 0px;
+}
+
+
+.geoviewerForm .ui-collapsible .ui-collapsible-content .moveOneStep div.couche-content {
+    border-bottom: solid 1px #aaa;
+}
+
+
+
+/** Volet ****************************************************************/
+
+.geoviewerForm .ui-volet {
+    background: url(../img/bg_volet.png) repeat top left;
+    font-size : 1em;
+    line-height: 1em;
+    border: 1px solid #898989;
+    max-height:50%;
+    overflow:auto;
+}
+
+.geoviewerForm .ui-volet-handleContainer {
+    background-color : transparent;
+    cursor : row-resize;
+}
+
+.geoviewerForm .ui-volet-toggleHandle {
+    margin : auto;
+    padding : 10px;
+    width : 20px;
+    position: absolute;
+    right: 10px;
+    cursor : pointer;
+    background: url(../img/icons/bt_volet.gif) no-repeat center right;
+}
+
+.geoviewerForm .volet {
+    /*border : 1px solid #a0a0a0; */
+    margin : 10px;
+    padding: 0 10px 10px 10px;
+    background: none;
+}
+
+.geoviewerForm .volet h3 {
+    color: #f28033;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.geoviewerForm .volet div.titleContainer div.subtitle {
+    border-top: 1px solid #c6c6c6;
+    border-bottom: 1px solid #c6c6c6;
+    padding: 5px 0 5px 0;
+    margin: 0 0 15px 0;
+}
+
+.geoviewerForm .ui-volet .ui-volet-handleContainer ui-state-active {
+    text-align: right;
+}
+/** title ****************************************************************/
+
+.geoviewerForm div.titleContainer div.subtitle {
+    margin-left: 57px;
+}
+
+.geoviewerForm div.collapsible .title {
+    font-weight: bold;
+    margin-bottom:2px;
+    padding-top: 10px;
+}
+
+
+/*************************************************************************/
+/** MAIN CONTAINER *******************************************************/
+/*************************************************************************/
+
+.geoviewerForm div#mainContainer {
+    /*width : 80%;
+    height : 80%;*/
+}
+
+
+/*************************************************************************/
+/** VIEWER PANEL *********************************************************/
+/*************************************************************************/
+
+/** MAIN *****************************************************************/
+.geoviewerForm div#viewerTab .ui-layout-center .ui-layout-footer p#EPSG,
+.geoviewerForm div#viewerTab .ui-layout-center .ui-layout-footer div#viewerForm-scale {
+    display:inline;
+}
+
+
+
+/** SIDEBAR **************************************************************/
+.geoviewerForm div#viewerTab div.ui-layout-west {
+    background-color: #DEDEDE;
+    background-image: url("../img/bg_west_center.gif");
+    background-position: top left;
+    background-repeat: repeat-x;
+}
+
+.geoviewerForm div.ui-header {
+    background:url("jquery-ui-1.8.2/sextant/images/ui-bg_inset-hard_75_999999_1x100.png") repeat-x scroll 50% 50% #999999;
+    border:1px solid #999999;
+    color:#FFFFFF;
+    font-weight:bold;
+    font-size:1em;
+    padding:0.3em 0.3em 0.3em 1.8em;
+}
+
+.geoviewerForm div.ui-content {
+    border-top:0 none;
+    font-size:0.95em;
+    margin-bottom:2px;
+    overflow:auto;
+    padding-bottom:15px;
+    padding-left:0;
+    top:1px;
+}
+
+/** Couches **/
+
+.geoviewerForm .ui-collapsible .ui-collapsible-content > div.mfLayerControl{
+    margin-left: 0px;
+    padding-top: 0px;
+}
+
+.geoviewerForm div#list_couche .ui-collapsible-content {
+    padding-bottom : 0;
+}
+
+
+.geoviewerForm li.couche {
+    padding-top : 5px;
+}
+
+/* Couche content */
+.geoviewerForm div.couche-content {
+    padding-left : 22px;
+}
+
+.geoviewerForm div.couche-content h2 {
+}
+
+.geoviewerForm .couche-content .toolbar {
+    padding: 0;
+    /*margin: 20px 0 5px 0;*/
+}
+
+/** Legend **/
+.geoviewerForm div#list_legend .ui-collapsible-content {
+    padding-bottom: 0;
+}
+
+/** Localisation **/
+
+.geoviewerForm #localisation label {
+    display: block;
+    float: left;
+    margin: 2px 0 0 0;
+    width: 6.5em;
+}
+
+.geoviewerForm #localisation .field.select select {
+    width: 228px;
+}
+
+.geoviewerForm #localisation .field.text input {
+    width: 141px;
+}
+
+.geoviewerForm #localisation #viewerForm-recadrer {
+    margin-bottom: 10px;
+}
+
+.geoviewerForm .map {
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+}
+
+
+/**************************************************************/
+/*CUSTOM*/
+/***************************************************************/
+/** */
+.geoviewerForm .tabPanel {
+    width :100%;
+    height : 100%;
+    padding : 0;
+    overflow : hidden;
+}
+.geoviewerForm .ui-helper-reset.ui-widget.ui-volet {
+    overflow-x: hidden;
+}
+
+
+/** GEOVIEWER MAPFACES **/
+/**Override**/
+
+#mainContainer {
+    font-size:12px;
+}
+.geoviewerForm h1 {
+    color:#F28033;
+    float:left;
+    font-size:2.12em;
+    font-weight:bold;
+}
+.geoviewerForm hr {
+    height: 1px;
+    border: none;
+    color: #aaa;
+    background-color: #aaa;
+}
+.geoviewerForm table {
+    width: 100%;
+    border: 1px solid #a0a0a0;
+    text-align: left;
+    color: #3b3c3c;
+}
+
+.geoviewerForm thead tr th {
+    background: url("../img/bg_thead_table.png") repeat-x top left;
+    color: #fff;
+}
+
+
+.geoviewerForm #mainContainer th {
+    padding: 5px 10px 5px 10px;
+    border-right: 1px solid #a0a0a0;
+}
+
+.geoviewerForm #mainContainer td {
+    padding: 0px;
+    border-right: 1px solid #a0a0a0;
+}
+
+.geoviewerForm #mainContainer tr.even {
+    background: url("../img/bg_tr_even_table.png") repeat top left;
+}
+.geoviewerForm .icon {
+    background-repeat:no-repeat;
+    height:24px;
+    width:24px;
+    display:block;
+    overflow:hidden;
+    text-indent:-99999px;
+}
+.geoviewerForm #mainContainer {
+
+
+    font-family:Arial,Helvetica,sans-serif;
+    background: none;
+
+    width :100%;
+    /*height : 100%;*/
+    padding : 0;
+    overflow : hidden;
+    padding: 0; /* not sure why need this again? */
+}
+
+.geoviewerForm #mainContainer .ui-layout-resizer {
+    visibility: visible;
+}
+
+.geoviewerForm div#mainContainer {
+    width : 100%;
+    /*height : 100%;*/
+}
+.geoviewerForm .buttonSet .button {
+}
+.geoviewerForm .volet div.subtitle {
+    border-top: 1px solid #c6c6c6;
+    border-bottom: 1px solid #c6c6c6;
+    padding: 5px 0 5px 0;
+    margin: 0px;
+}
+.geoviewerForm #mainContainer .volet td {
+    padding: 5px 10px 5px 10px;
+    border-right: 1px solid #a0a0a0;
+}
+.geoviewerForm #mainContainer .volet table {
+    background: none repeat scroll 0pt 0pt transparent;
+    margin: 10px;
+    padding: 0pt 10px 10px;
+}
+
+/** custom de jquery-cutom*/
+.geoviewerForm #list_couche, #list_legend, #localisation {
+    font-size: 1em;
+}
+
+/*** LayerContrrols ***/
+.geoviewerForm div.mfLayerControl {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border: medium none;
+    padding: 0px;
+    margin: 0px;
+    font-size:1em;
+}
+
+.geoviewerForm div.mfLayerControl.tree {
+    background:none repeat scroll 0 0 #FFFFFF;
+    font-size:0.95em;
+    border-top:0 none;
+    margin-bottom:2px;
+    overflow:auto;
+    padding:5px 0px 15px;
+    top:1px;
+}
+.geoviewerForm div.mfLayerControl.tree > div > ul{
+    padding: 0px 10px;
+}
+
+.geoviewerForm .mfLayerControl .layer {
+    padding-top: 5px;
+    border: none;
+    color: #616161;
+    font-weight: bold;
+    padding-left: 0;
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+}
+
+.geoviewerForm .mfLayerControl .general {
+    border-bottom:1px solid #AAAAAA;
+    background:url("../img/bg_list_couches.png") repeat-x scroll 50% bottom #FFFFFF;
+    border-color:-moz-use-text-color -moz-use-text-color #AAAAAA;
+    border-style:none none solid;
+    border-width:medium medium 1px;
+    color:#000000;
+}
+.geoviewerForm div.mfLayerControl .title {
+    padding: 0px;
+    line-height: inherit;
+}
+.geoviewerForm .mfLayerControl .bottom .button {
+    margin-bottom: 7px;
+    -moz-border-radius:4px 4px 4px 4px;
+    color:#000000;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:0.95em;
+    font-weight:normal;
+    line-height:14px;
+    margin: 0 0 10px 23px;
+    padding: 0px;
+    background-image:url("../img/bg_button_default.gif");
+    background-position:left bottom;
+    background-repeat:repeat-x;
+    height:auto;
+    border:1px solid #000000;
+}
+
+.geoviewerForm .mfLayerControl .bottom {
+    margin-top: 10px;
+    height: 28px;
+}
+
+.geoviewerForm .mfLayerControl .bottom.open {
+    height: 52px;
+}
+
+.geoviewerForm .mfLayerControl .icon {
+    width: 18px;
+    height: 18px;
+    margin-bottom: 8px;
+}
+
+.geoviewerForm .mfLayerControl .down {
+    background-position:-64px -22px;
+}
+.geoviewerForm .mfLayerControl .up {
+    background-position:0 -19px;
+}
+
+.geoviewerForm .mfLayerControl .arrow {
+    cursor:pointer;
+    height:10px !important;
+    width:22px !important;
+    background-image:url("jquery-ui-1.8.2/sextant/images/ui-icons_999999_256x240.png");
+
+}
+
+.geoviewerForm .mfLayerControl .parameters {
+    background-color:#E5E5E5;
+    border-bottom:1px solid #AAAAAA;
+    padding:0 0 10px;
+}
+
+.geoviewerForm .mfLayerControl .parameters .parameter {
+    border-bottom:1px solid #FFFFFF;
+    color:#000000;
+    font-weight:normal;
+    padding:5px 0 5px 10px;
+    font-size:100%;
+    margin:0;
+    outline:0 none;
+    text-decoration:none;
+    vertical-align:baseline;
+}
+.geoviewerForm .mfLayerControl .parameters .parameter .title {
+    color:#626262;
+    font-weight:bold;
+    margin:0;
+    padding:0;
+}
+.geoviewerForm .mfLayerControl .parameters .parameter.dimrange {
+    height: 60px;
+}
+
+.geoviewerForm .ui-slider-horizontal {
+    height:7px;
+}
+.geoviewerForm .mfLayerControl .parameters .opensldeditor {
+    height: 28px;
+}
+.geoviewerForm .mfOpacitySlider, .mfDimRangeSlider {
+    width: 175px;
+    float:right;
+    margin-right:15px;
+}
+
+.geoviewerForm .mfDimRangeSlider .ui-slider-horizontal .ui-slider-handle,
+.geoviewerForm .mfOpacitySlider .ui-slider-horizontal .ui-slider-handle {
+    margin-left:-0.2em;
+    top:-0.5em;
+    cursor: move;
+}
+
+.geoviewerForm .calendar .button {
+    float:none;
+}
+/**** Liste des legendes ****/
+
+.geoviewerForm .mfLayerControl.legends .layer {
+    background: url("../img/bg_list_couches.png") repeat-x scroll 50% bottom #FFFFFF;
+    border-color: -moz-use-text-color -moz-use-text-color #AAAAAA;
+    border-style: none none solid;
+    border-width: medium medium 1px;
+    color: #000000;
+    padding: 0 10px 15px;
+}
+.geoviewerForm .mfLayerControl.legends .title {
+    border-bottom: none;
+    margin: 0;
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 2px;
+    padding-top: 10px;
+}
+
+
+
+/*ButtonBar*/
+.geoviewerForm .mfButtonBar {
+    margin: 0px;
+    width: auto;
+    height: auto;
+}
+.geoviewerForm .mfButtonBar div {
+    background-position: 0px 0px;
+    margin: 2px 4px;
+}
+
+/*navigation*/
+
+.geoviewerForm .mfButtonBar .olControlZoomBoxItemInactive,
+.geoviewerForm .mfButtonBar .olControlZoomBoxItemActive {
+    background-image: url("../img/icons/zoom-in.png");
+}
+
+.geoviewerForm .mfButtonBar .olControlZoomOutItemInactive,
+.geoviewerForm .mfButtonBar .olControlZoomOutItemActive  {
+    background-image: url("../img/icons/zoom-out.png");
+}
+
+.geoviewerForm .mfButtonBar .olControlNavigationItemInactive,
+.geoviewerForm .mfButtonBar .olControlNavigationItemActive {
+    background-image: url("../img/icons/move.png");
+}
+
+.geoviewerForm .mfButtonBar .olControlZoomToMaxExtentItemInactive {
+    background-image: url("../img/icons/zoom-default.png");
+}
+
+.geoviewerForm .mfButtonBar .olControlNavigationHistoryPreviousItemInactive,
+.geoviewerForm .mfButtonBar .olControlNavigationHistoryPreviousItemActive {
+    background: transparent url("../img/icons/prev.png") no-repeat 0px 0px;
+}
+
+.geoviewerForm .mfButtonBar .olControlNavigationHistoryNextItemInactive,
+.geoviewerForm .mfButtonBar .olControlNavigationHistoryNextItemActive {
+    background: transparent url("../img/icons/next.png") no-repeat 0px 0px;
+}
+
+/*measures*/
+
+.geoviewerForm .mfButtonBar .olControlMeasureItemInactive,
+.geoviewerForm .mfButtonBar .olControlMeasureItemActive {
+    background-image: url("../img/icons/measure-distance.png");
+    background-position:-3px 0;
+}
+
+.geoviewerForm .mfButtonBar .olControlMeasureAreaItemInactive,
+.geoviewerForm .mfButtonBar .olControlMeasureAreaItemActive {
+    background-image: url("../img/icons/measure-surface.png");
+}
+
+/*featureinfo*/
+
+.geoviewerForm .mfButtonBar .olControlGetFeatureInfoItemInactive,
+.geoviewerForm .mfButtonBar .olControlGetFeatureInfoItemActive,
+.geoviewerForm .mfButtonBar .olControlNcWMSGetTransectItemInactive,
+.geoviewerForm .mfButtonBar .olControlNcWMSGetTransectItemActive,
+.geoviewerForm .mfButtonBar .olControlNcWMSGetVerticalProfileItemInactive,
+.geoviewerForm .mfButtonBar .olControlNcWMSGetVerticalProfileItemActive {
+    background-image: url("../img/icons/attribut-interrogation.png");
+}
+
+.geoviewerForm .mfButtonBar div.button.ui-state-hover,
+.geoviewerForm .mfButtonBar .olControlZoomBoxItemActive,
+.geoviewerForm .mfButtonBar .olControlZoomOutItemActive,
+.geoviewerForm .mfButtonBar .olControlNavigationItemActive,
+.geoviewerForm .mfButtonBar .olControlMeasureAreaItemActive,
+.geoviewerForm .mfButtonBar .olControlNavigationHistoryPreviousItemActive,
+.geoviewerForm .mfButtonBar .olControlNavigationHistoryNextItemActive,
+.geoviewerForm .mfButtonBar .olControlGetFeatureInfoItemActive,
+.geoviewerForm .mfButtonBar .olControlNcWMSGetTransectItemActive,
+.geoviewerForm .mfButtonBar .olControlNcWMSGetVerticalProfileItemActive {
+    background-position: -24px 0px;
+}
+
+
+.geoviewerForm .mfButtonBar div.button.olControlGraticuleItemActive,
+.geoviewerForm .mfButtonBar div.button.olControlGraticuleItemInactive {
+    width: 25px;
+    height: 25px;
+    background-position: 0px 1px;
+    background-image: url("../img/grid.png");
+}
+
+.geoviewerForm .mfButtonBar div.button.ui-state-hover.olControlGraticuleItemInactive {
+    width: 25px;
+    height: 25px;
+    box-shadow: 1px 1px 1px #888;
+    background-position: 0px 1px;
+    background-image: url("../img/grid.png");
+}
+
+/* Ajout de bord pour faire comme si le bouton etait enfoncé */
+.geoviewerForm .mfButtonBar .olControlZoomBoxItemActive,
+.geoviewerForm .mfButtonBar .olControlZoomOutItemActive,
+.geoviewerForm .mfButtonBar .olControlNavigationItemActive,
+.geoviewerForm .mfButtonBar .olControlGetFeatureInfoItemActive,
+.geoviewerForm .mfButtonBar .olControlNcWMSGetTransectItemActive,
+.geoviewerForm .mfButtonBar .olControlGraticuleItemActive,
+.geoviewerForm .mfButtonBar .olControlNcWMSGetVerticalProfileItemActive  {
+    border-color: orange black black orange;
+    border-style: inset;
+    border-width: 1px;
+
+}
+
+.geoviewerForm .mfButtonBar div.button.olControlMeasureItemActive.ui-state-hover,
+.geoviewerForm .mfButtonBar .olControlMeasureItemActive {
+    background-position: -33px 0px;
+}
+
+.geoviewerForm .mfButtonBar .button {
+    padding: 0px;
+}
+
+.geoviewerForm .mfGeonamesInput {
+    float: left;
+}
+
+.geoviewerForm .mfCursorTrack {
+    float: left;
+    margin: 0px 30px;
+}
+/* Tree */
+.geoviewerForm .treeicon {
+    width: 16px;
+    height: 17px;
+}
+.geoviewerForm .treenode-expanded, .treenode-collapsed  {
+    background:url("jquery-jstree-1.0RC2/sextant/d.png") no-repeat;
+}
+.geoviewerForm .treenode-expanded {
+    background-position: -19px 0px;
+}
+.geoviewerForm .mfLayerControl .layerremoved {
+    background:url("../img/icons/delete.png") no-repeat scroll 0 0 transparent;
+    cursor:pointer;
+}
+
+
+
+.geoviewerForm .map .toolbar .button {
+    margin: 8px 6px;
+}
+
+.cartForm ul {
+    list-style: none;
+    margin: 0px;
+    padding:0px;
+}
+
+.cartForm #rasterLayers .collapsible, 
+.cartForm #vectorLayers .collapsible {
+    font-size: 1em;
+}
+
+.cartForm select {
+}
+
+
+/**General ButtonBar **/
+
+.buttonolControlZoomOutActive,
+.buttonolControlZoomBoxActive, 
+.buttonolControlSelectionZoomBoxActive {
+    cursor: crosshair;
+}
+
+.buttonolControlGetFeatureInfoActive {
+    cursor: help;
+}
+
+.buttonolControlDragPanActive {
+    cursor: move;
+}
+
+.geoviewerForm .buttonolControlGraticuleItemInactive,
+.geoviewerForm .buttonolControlMeasureItemInactive,
+.geoviewerForm .buttonolControlNavigationItemInactive,
+.geoviewerForm .buttonolControlZoomToMaxExtentItemInactive,
+.geoviewerForm .buttonolControlSaveItemInactive,
+.geoviewerForm .buttonolControlZoomBoxItemInactive,
+.geoviewerForm .buttonolControlZoomOutItemInactive,
+.geoviewerForm .buttonolControlGetFeatureInfoItemInactive,
+.geoviewerForm .buttonolControlWCSGetCoverageItemInactive,
+.geoviewerForm .buttonolControlSelectionZoomBoxItemInactive,
+.geoviewerForm .buttonolControlNavigationHistoryNextItemActive,
+.geoviewerForm .buttonolControlNavigationHistoryPreviousItemActive,
+.geoviewerForm .buttonolControlMeasureAreaItemInactive
+.geoviewerForm .button-wps-xml {
+    cursor:pointer;
+}
+
+/*Geonames*/
+.geoviewerForm input.ui-autocomplete-loading {
+    background:url("jquery-ui-1.8.2/sextant/images/ui-anim_basic_16x16.gif") no-repeat scroll right center white;
+}
+
+.mfMapPane, .mfLocatorMap{
+    background-color:rgb(219,232,255);
+}
+
+.wmslayerslist table tr {
+    width: 350px;
+}
+.mfScaleBar {
+    padding: 0px;
+    height: 30px;
+    float: right;
+    margin: -10px 18px 0px 18px;
+    width: 230px;
+}
+
+.mfScaleBar .olControlScaleBarLabelBox{
+    text-align: right;
+    width: 30px;    
+}
+
+.mfScaleBar .olControlScaleBarMarkerMajor, 
+.mfScaleBar .olControlScaleBarBar,
+.mfScaleBar .olControlScaleBarMarkerMinor,
+.mfScaleBar .olControlScaleBarBarAlt {
+    top: 0px;
+}
+
+.mfScaleBar .olControlScaleBarMarkerMinor,
+.mfScaleBar .olControlScaleBarMarkerMajor {
+    display:none;   
+} 
+
+.mfScaleBar .olControlScaleBarNumbersBox {
+    top: 11px;
+    height: 18px;
+}
+
+/*Icône du SLDEditor */
+.ui-icon {cursor:pointer;}
+.ui-icon-triangle-1-n { background-position: 0 -16px; }
+.ui-icon-triangle-1-s { background-position: -65px -16px; }
+.mfSldEditor .ui-icon {
+    background-image: url('jquery-ui-1.8.2/sextant/images/old/ui-icons_ef8c08_256x240.png');
+}
+
+#loadbg {
+    width: 100%; 
+    height: 100%; 
+    /* The loadbg doit etre en dessous de la navigation et au dessus de tout le reste*/
+    z-index: 15;
+    position: absolute; 
+    background-image: url("/sxt-sextant-theme/images/sextant/bg_degrade.png"); 
+    background-color: #D9D9D9; 
+    background-repeat: repeat-x; 
+    background-position: left -5px;
+}
+#loadbg img {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    margin-top: -24px;
+    margin-left:-24px;
+}
+
+#initForm {
+    width: 0px;
+    height: 0px;
+    margin: 0px;
+    padding: 0px;
+    display: none;
+}
+
+#output {
+    margin:0px 30px;
+}
+
+.geoviewerForm .mfWmsAddingTool {
+    padding: 5px;
+    width: 490px;
+}
+.geoviewerForm .mfWmsAddingTool ul {
+    list-style: none;
+}
+
+/*.geoviewerForm .wmslayerslist {
+    height: 200px;
+}*/
+
+.geoviewerForm .wmsadd-loader {   
+    background-color: #E2F3FF;  
+    display: none;
+    height: 206px;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+}
+
+.geoviewerForm .wmsadd-loader div {   
+    height: 100%; 
+    position:relative;
+    width: 100%;
+}
+
+.geoviewerForm .wmsadd-loader img {
+    left: 50%;
+    margin-left: -24px;
+    margin-top: -24px;
+    position: relative;
+    top: 50%;
+}
+
+#ui-dialog-title-popup-dialog-div {
+    font-size: 12px;
+}
+
+
+/* WPS tool */
+
+.geoviewerForm .wps-container {
+    overflow: auto;
+    height: 586px;
+    width: 392px;
+    margin: 6px;
+    float: left;
+}
+
+.geoviewerForm .wps-tool fieldset {
+    margin-bottom: 10px;
+    border: 1px solid #888;
+    padding: 8px;
+}
+
+.geoviewerForm .wps-tool fieldset legend {
+    color: #555;
+    font-size: 11px;
+    padding: 0px 3px 0px 3px;
+}
+
+.wps-tool fieldset.optional {
+    border-color: #AAA;
+}
+
+.wps-tool fieldset.optional legend {
+    color: #777;
+}
+
+.geoviewerForm .wps-tool table,
+.geoviewerForm .wps-tool td {
+    border: none;
+}
+
+.geoviewerForm .wps-tool table {
+    margin-top: 8px;
+}
+
+.geoviewerForm .wps-tool td {
+    padding: 2px 0px 2px 0px;
+    height: 24px;
+}
+
+.geoviewerForm .button-wps-xml {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    height: 586px;
+    width: 12px;
+    border: 1px solid #AAA;
+    float: left;
+    cursor: pointer;
+}
+
+.geoviewerForm .button-wps-xml.enabled {
+    background: #FFF url("../img/ui-arrow-left.png") no-repeat center center;
+    border-radius: 3px 0px 0px 3px;
+}
+
+.geoviewerForm .button-wps-xml.disabled {
+    background: #FFF url("../img/ui-arrow-right.png") no-repeat center center;
+    border-radius: 3px;
+}
+
+.geoviewerForm .xml-container {
+    overflow: auto;
+    width: 777px;
+    height: 588px;
+    margin: 6px 6px 6px -1px;
+    float: left;
+}
+
+
+/* CodeMirror theme */
+
+.CodeMirror {
+    line-height: 1em;
+    font-family: monospace;
+}
+
+.CodeMirror-scroll {
+    overflow: auto;
+    background-color: #fff;
+    height: 586px;
+    border:1px solid #AAAAAA;
+    border-radius: 0px 3px 3px 0px;
+    /* This is needed to prevent an IE[67] bug where the scrolled content
+       is visible outside of the scrolling box. */
+    position: relative;
+}
+
+.CodeMirror-gutter {
+    position: absolute; left: 0; top: 0;
+    z-index: 10;
+    background-color: #eee;
+    border-right: 1px solid #eee;
+    min-width: 2em;
+    height: 100%;
+}
+.CodeMirror-gutter-text {
+    color: blue;
+    text-align: right;
+    padding: .4em .2em .4em .4em;
+    white-space: pre !important;
+}
+.CodeMirror-lines {
+    padding: .4em;
+}
+
+.CodeMirror pre {
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0;
+    border-width: 0; margin: 0; padding: 0; background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0; margin: 0;
+    white-space: pre;
+    word-wrap: normal;
+}
+
+.CodeMirror-line-numbers {	
+    width: 2.2em;	
+    color: blue;	
+    background-color: #eee;	
+    text-align: right;	
+    padding-right: .3em;	
+    font-size: 10pt;	
+    font-family: monospace;	
+    padding-top: .4em;
+}
+
+.CodeMirror-wrap pre {
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+.CodeMirror-wrap .CodeMirror-scroll {
+    overflow-x: hidden;
+}
+
+.CodeMirror textarea {
+    outline: none !important;
+}
+
+.CodeMirror pre.CodeMirror-cursor {
+    z-index: 10;
+    position: absolute;
+    visibility: hidden;
+    border-left: 1px solid black;
+}
+.CodeMirror-focused pre.CodeMirror-cursor {
+    visibility: visible;
+}
+
+span.CodeMirror-selected { background: #d9d9d9; }
+.CodeMirror-focused span.CodeMirror-selected { background: #d2dcf8; }
+
+.CodeMirror-searching {background: #ffa;}
+
+
+

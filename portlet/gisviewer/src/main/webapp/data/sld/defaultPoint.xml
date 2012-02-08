@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sld:StyledLayerDescriptor xmlns:se="http://www.opengis.net/se" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" xmlns:gml="http://www.opengis.net/gml" version="1.1.0">
+    <se:Description>
+        <se:Title/>
+        <se:Abstract/>
+    </se:Description>
+    <sld:NamedLayer>
+        <se:Description>
+            <se:Title/>
+            <se:Abstract/>
+        </se:Description>
+        <sld:LayerFeatureConstraints/>
+        <sld:UserStyle>
+            <se:Description>
+                <se:Title/>
+                <se:Abstract/>
+            </se:Description>
+            <sld:IsDefault>false</sld:IsDefault>
+            <se:FeatureTypeStyle>
+                <se:Description>
+                    <se:Title/>
+                    <se:Abstract/>
+                </se:Description>
+                <se:Rule>
+                    <se:Description>
+                        <se:Title/>
+                        <se:Abstract/>
+                    </se:Description>
+                    <se:MinScaleDenominator>0.0</se:MinScaleDenominator>
+                    <se:MaxScaleDenominator>1.7976931348623157E308</se:MaxScaleDenominator>
+                    <se:PointSymbolizer uom="http://www.opengeospatial.org/se/units/pixel">
+                        <se:Description>
+                            <se:Title/>
+                            <se:Abstract/>
+                        </se:Description>
+                        <se:Geometry>
+                            <ogc:PropertyName>the_geom</ogc:PropertyName>
+                        </se:Geometry>
+                        <se:Graphic>
+                            <se:Mark>
+<se:WellKnownName>cross</se:WellKnownName>
+<se:Fill>
+    <se:SvgParameter name="fill">
+        <ogc:Literal>#ffff00</ogc:Literal>
+    </se:SvgParameter>
+    <se:SvgParameter name="fill-opacity">
+        <ogc:Literal>1.0</ogc:Literal>
+    </se:SvgParameter>
+</se:Fill>
+<se:Stroke>
+    <se:SvgParameter name="stroke">
+        <ogc:Literal>#ff0000</ogc:Literal>
+    </se:SvgParameter>
+    <se:SvgParameter name="stroke-dasharray">10.0 10.0 10.0</se:SvgParameter>
+    <se:SvgParameter name="stroke-dashoffset">
+        <ogc:Literal>0</ogc:Literal>
+    </se:SvgParameter>
+    <se:SvgParameter name="stroke-linecap">
+        <ogc:Literal> square</ogc:Literal>
+    </se:SvgParameter>
+    <se:SvgParameter name="stroke-linejoin">
+        <ogc:Literal>bevel</ogc:Literal>
+    </se:SvgParameter>
+    <se:SvgParameter name="stroke-opacity">
+        <ogc:Literal>1.0</ogc:Literal>
+    </se:SvgParameter>
+    <se:SvgParameter name="stroke-width">
+        <ogc:Literal>2</ogc:Literal>
+    </se:SvgParameter>
+</se:Stroke>
+                            </se:Mark>
+                            <se:Opacity>
+<ogc:Literal>1.0</ogc:Literal>
+                            </se:Opacity>
+                            <se:Size>
+<ogc:Literal>12</ogc:Literal>
+                            </se:Size>
+                            <se:Rotation>
+<ogc:Literal>0</ogc:Literal>
+                            </se:Rotation>
+                            <se:AnchorPoint>
+<se:AnchorPointX>
+    <ogc:Literal>0.5</ogc:Literal>
+</se:AnchorPointX>
+<se:AnchorPointY>
+    <ogc:Literal>0.5</ogc:Literal>
+</se:AnchorPointY>
+                            </se:AnchorPoint>
+                            <se:Displacement>
+<se:DisplacementX>
+    <ogc:Literal>0</ogc:Literal>
+</se:DisplacementX>
+<se:DisplacementY>
+    <ogc:Literal>0</ogc:Literal>
+</se:DisplacementY>
+                            </se:Displacement>
+                        </se:Graphic>
+                    </se:PointSymbolizer>
+                </se:Rule>
+            </se:FeatureTypeStyle>
+        </sld:UserStyle>
+    </sld:NamedLayer>
+</sld:StyledLayerDescriptor>

@@ -1,0 +1,509 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:mf="http://mapfaces.org/taglib"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:f="http://java.sun.com/jsf/core"
+                 xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <head>
+        <title>Sextant</title>
+
+        
+        <!-- META TAGS -->
+        
+        <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
+        <meta name="robots" content="index, follow" />
+        <meta name="description" content="The ifremer geospatial data viewer " />
+        <meta name="keywords" content="geoviewer,openlayers,mapfaces,sextant" />
+        <meta name="author" content="Geomatys" />
+
+        <c:set var="contextPath" value="#{facesContext.externalContext.requestContextPath}" />
+        
+        
+        <!-- CSS FILES -->
+        
+        <link rel="stylesheet" type="text/css" href="#{contextPath}/css/sxt-geoviewer.css" />
+        
+        <!--[if IE 6]>
+        <style type="text/css"> @import url(#{contextPath}/css/ie6.css); </style>
+        <![endif]-->
+        
+        <!--[if IE 7]>
+        <style type="text/css"> @import url(#{contextPath}/css/ie7.css); </style>
+        <![endif]-->
+        
+
+        <!-- JAVASCRIPT FILES -->        
+
+        <!-- We need to have the language code before loading some js library, particularly OpenLayers-->
+        <script type="text/javascript"> 
+            window.language = "#{facesContext.externalContext.requestLocale}";
+        </script>
+        
+        <!--[if lt IE 9]>
+        <script type="text/javascript">
+            //<![CDATA[
+            var IE7_PNG_SUFFIX=".png";
+            //]]>
+        </script>
+        <script src="#{contextPath}/js/lib/ie7-2.1b4/src/IE9.js"></script>
+        <script src="#{contextPath}/js/lib/ie7-2.1b4/src/ie7-squish.js"></script>
+        <![endif]-->
+
+        <!-- The google api -->
+        <script src="http://maps.google.com/maps/api/js?v=3.5&amp;sensor=false"></script>
+        
+        <!-- scripts geoviewer compressés -->
+        <script type="text/javascript" src="#{contextPath}/js/sxt-geoviewer.js"></script>
+        
+        <!-- scripts geoviewer non compressés -->
+        <!--script type="text/javascript" src="#{contextPath}/js/lib/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="#{contextPath}/js/lib/jquery-ui-1.8.2-all/jquery-ui-1.8.2.all.min.js"></script>
+        <script type="text/javascript" src="#{contextPath}/js/lib/jquery.layout-1.3.0RC29.1.min.js"></script>
+        <script type="text/javascript" src="#{contextPath}/js/lib/jquery.collapsible.v1.0.0.min.js"></script>
+        <script type="text/javascript" src="#{contextPath}/js/lib/jquery.volet.v1.0.0.min.js"></script>
+        <script type="text/javascript" src="#{contextPath}/js/geoviewer.js"></script>
+        <script type="text/javascript" src="#{contextPath}/js/init.js"></script>-->
+        
+        <!-- scripts mapfaces compréssés, on les met ici et non dans liferay-portlet.xml pour des questions de performance, 
+        un script doit être chargé le plus tard possible pour ne pas bloquer le rendu de la page-->        
+        <script type="text/javascript" src="#{contextPath}/faces/rfResorg.ajax4jsf.javascript.AjaxScript"></script>
+        <script type="text/javascript" src="#{contextPath}/mfRes/org/ajax4jsf/javascript/JSFAJAX.js"></script>
+        <script type="text/javascript" src="#{contextPath}/mfRes/org/mapfaces/resources/compressed/core-yc.js"></script>
+        <script type="text/javascript" src="#{contextPath}/mfRes/org/mapfaces/resources/compressed/treetable.min.js"></script>
+        <script type="text/javascript" src="#{contextPath}/mfRes/org/mapfaces/resources/compressed/calendar.min.js"></script>  
+        <script type="text/javascript" src="#{contextPath}/js/ext/calendar-ext.js"></script>
+        
+        
+        <script type="text/javascript" src="#{contextPath}/mfRes/org/mapfaces/resources/compressed/colorpicker.min.js"></script>
+        <script type="text/javascript" src="#{contextPath}/mfRes/org/mapfaces/resources/compressed/jqueryui.spinnerplugin.min.js"></script>
+        <script type="text/javascript" src="#{contextPath}/mfRes/org/mapfaces/resources/compressed/openlayers.min.js"></script>
+        <!--<script type="text/javascript" src="#{contextPath}/mfRes/org/mapfaces/resources/openlayers/custom/OpenLayers.js"></script>-->
+        <script type="text/javascript" src="#{contextPath}/mfRes/org/mapfaces/resources/compressed/geonames-autocomp-jq.min.js"></script>
+        <script type="text/javascript" src="#{contextPath}/mfRes/org/mapfaces/resources/compressed/codemirror.min.js"></script>
+        
+        <!-- ImgPath for OpenLayers -->
+        <script type="text/javascript"> 
+            OpenLayers.ImgPath = '#{contextPath}/mfRes/org/mapfaces/resources/img/';
+        </script>
+        
+        <!-- Chargement des fichiers js selon le language --> 
+        <c:if test="#{facesContext.externalContext.requestLocale == 'fr_FR'}">
+            <script type="text/javascript" src="#{contextPath}/mfRes/org/mapfaces/resources/calendar/js/lang/calendar-fr-min.js"></script>  
+            <script type="text/javascript" src="#{contextPath}/js/lang/openlayers-fr-min.js"></script>             
+        </c:if>
+        
+        <!-- Chargement des fichiers js selon le language --> 
+        <c:if test="#{facesContext.externalContext.requestLocale == 'en_US'}">
+            <script type="text/javascript" src="#{contextPath}/js/lang/openlayers-en-min.js"></script>            
+        </c:if>
+    </head>
+    
+    <body>    
+        <div id="loadbg">
+            <img src="#{contextPath}/img/ajax-loader.gif" alt="#{msg.loadingLabel}" />
+        </div>
+        
+        <h:form id="initForm">
+            <h:outputText value="#{geoviewer.init}" />
+        </h:form>
+        <h:form id="mainForm" class="geoviewerForm">
+            <input type="hidden" id="layerControlBasketIdClicked" />
+            <input type="hidden" id="configmdviewerurl" value="#{geoviewer.mdViewerUrl}" />
+            <mf:Context id="mainCtx" service="#{geoviewer.ctxService}" loadAllGetCaps="true" activeNcWMS="true" storeContextAddedByUrl="true">        
+                <a4j:queue requestDelay="10" ignoreDupResponses="true" timeout="5000"/>
+                <div id="mainContainer" style="height:600px;">
+
+                    <div class="tabPanel" id="viewerTab" >
+
+                        <div class="ui-layout-center">
+
+                            <div class="ui-layout-header">
+                                <div class="toolbar ui-helper-clearfix">
+                                    <div class="set01 buttonSet ui-helper-clearfix">
+
+                                        <!-- Outil de navigation -->
+                                        <mf:ButtonBar zoomBoxOut="true" defaultToolName="pan" 
+                                                      graticule="#{geoviewer.activateGraticuleTool}" 
+                                                      buttonClass="button"></mf:ButtonBar>
+
+                                    </div>
+                                    <div class="set02 buttonSet ui-helper-clearfix">
+                                    </div>
+                                    <div class="set03 buttonSet ui-helper-clearfix">
+
+                                        <!-- Ajout de couches WMS -->
+                                        <a4j:commandLink title="#{msg.addWMSLayerToolTip}"
+                                                         reRender="wmsPopup"                                                           
+                                                         styleClass="button button-icon-solo ui-corner-all ui-state-default" >
+                                            <f:param name="org.mapfaces.ajax.POPUP_HIDDEN" 
+                                                     value="false"/>
+                                            <f:param name="org.mapfaces.ajax.POPUP_ID" 
+                                                     value="wmsPopup"/>
+                                            <span class="icon couche-add"/>
+                                        </a4j:commandLink>
+                                        
+                                        <!-- Outil WPS -->
+                                        <a4j:commandLink title="#{msg.wpsToolTip}"
+                                                         reRender="wpsPopup"     
+                                                         rendered="#{geoviewer.WPSActive}"
+                                                         style="text-indent:0px;line-height:24px;"
+                                                         styleClass="button button-icon-solo ui-corner-all ui-state-default"
+                                                         oncomplete="xmlEditorRefresh();"
+                                                         value="WPS" >
+                                            <f:param name="org.mapfaces.ajax.POPUP_HIDDEN" 
+                                                     value="false"/>
+                                            <f:param name="org.mapfaces.ajax.POPUP_ID" 
+                                                     value="wpsPopup"/>
+                                        </a4j:commandLink>
+
+                                        <!-- Interrogation de svaleurs attributaires -->
+                                        <mf:ButtonBar pan="false" 
+                                                      style="float:left;" 
+                                                      zoomIn="false" 
+                                                      zoomOut="false" 
+                                                      history="false" 
+                                                      reRender="dataRequest,featureInfoTables" 
+                                                      onComplete="afterGetFeatureInfo(request,event,data);"
+                                                      featureInfo="true"
+                                                      buttonClass="button" 
+                                                      noDefaultTool="true" 
+                                                      zoomMaxExtent="false" 
+                                                      hideResultsOnZoom="false" >                                            
+                                        </mf:ButtonBar>
+                                                                            
+                                    </div>
+                                    <div class="set04 buttonSet ui-helper-clearfix">
+                                        
+
+                                        <!-- Upload de fichier context -->
+                                        <a4j:commandLink title="#{msg.uploadContextToolTip}"                   
+                                                         onclick="$('.fullAbs')[4].style.display='block';return false;"
+                                                         reRender="uploadPopup"                                        
+                                                         styleClass="button button-icon-solo ui-corner-all ui-state-default">
+                                            <span class="icon extraction"/>
+                                        </a4j:commandLink>
+
+                                        
+                                        <!-- Download le fichier context courant-->
+                                        <mf:FileDownload action="#{geoviewer.getOWCFile}" 
+                                                         method="js" 
+                                                         styleClass="button button-icon-solo ui-corner-all ui-state-default">
+                                            <span class="icon context-save" 
+                                                  title="#{msg.saveContextToolTip}" />
+                                        </mf:FileDownload>
+                                        
+
+                                        <!-- Print the map -->
+                                        <a4j:commandLink title="#{msg.printToolTip}"
+                                                         reRender="printPopup"                                                           
+                                                         styleClass="button button-icon-solo ui-corner-all ui-state-default">
+                                            <f:param name="org.mapfaces.ajax.POPUP_HIDDEN" 
+                                                     value="false"/>
+                                            <f:param name="org.mapfaces.ajax.POPUP_ID" 
+                                                     value="printPopup"/>
+                                            <span class="icon print"/>
+                                        </a4j:commandLink>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- FIN viewer/layout-center/layout-header -->
+                            
+                            <!-- height:7px; is necessary to avoid null value division in OpenLayers resolution calculation, we choose 7px because of padding of parents div-->
+                            <div class="ui-layout-content" style="overflow:hidden;padding:0px;height:200px;">
+
+                                <div class="ui-volet-blockContainer" style="width:100%">
+
+                                    <mf:MapPane id="mainMap" 
+                                                style="width:100%;height:100%;" 
+                                                activateKeyboard="false"
+                                                enableWmsUrl="true"
+                                                maxExtentInDegree="#{geoviewer.maxExtent}" 
+                                                addLayersSessionKey="LIFERAY_SHARED_GEOVIEWER"
+                                                filterLayersSessionKey="#{geoviewer.currentCommunity}">
+                                    </mf:MapPane>
+
+                                    <!-- DataRequest pour le GetFeatureInfo-->
+                                    <mf:DataRequest id="dataRequest"
+                                                    featureCount="5"
+                                                    dataResult="#{geoviewer.featuresStores}"
+                                                    outputFormat="#{geoviewer.getFeatureInfoOutputFormat}"
+                                                    featureInfoValues="#{geoviewer.getFeatureInfoResults}" />
+                                    
+                                    <!-- DataRequest pour les Interrogations ncWMS-->
+                                    <mf:DataRequest id="dataRequestNcWMS" 
+                                                    featureCount="5" 
+                                                    outputFormat="#{geoviewer.getFeatureInfoOutputFormat}"
+                                                    targetPopupId="popup">
+                                        <mf:Popup id="popup"></mf:Popup>
+                                    </mf:DataRequest>
+
+                                    <!-- Titre H3 dans le volet -->
+                                    <div class="volet" style="width:100%">
+
+                                        <div class="titleContainer">
+                                            <h3>
+                                                <h:outputText value="#{msg.infosAttrTitle}" />
+                                            </h3>
+                                            <!--div class="subtitle">Nom de la couche interrogée</div-->
+                                        </div>
+                                        
+                                        <!-- Résultats des GetFeatureInfos -->
+                                        <mf:Div id="featureInfoTables">
+                                            <div var="featuresStore"
+                                                 jsfc="ui:repeat" 
+                                                 value="#{geoviewer.featuresStores}">
+                                                
+                                                <div class="subtitle">
+                                                    <h:outputText value="#{featuresStore.featureType.description}"/>
+                                                </div>
+                                                
+                                                <mf:FeatureTable style="width:700px;" 
+                                                                 value="#{featuresStore.features}" 
+                                                                 scrollY="150px"
+                                                                 deactivateJS="true" 
+                                                                 featureType="#{featuresStore.featureType}" />
+                                            </div>
+                                        </mf:Div>
+                                    </div>
+                                    <!-- FIN viewer/layout-center/layout-content/volet -->
+
+                                </div>
+                                <!-- FIN viewer/layout-center/layout-content/volet-blockContainer -->
+                                
+                            </div>
+                            <!-- FIN viewer/layout-center/layout-content -->
+
+                            <div class="ui-layout-footer">
+                                <mf:CursorTrack></mf:CursorTrack>
+                                <mf:ScaleBar  abbreviateLabel="true" 
+                                              unitsLabelPos="right">                                    
+                                </mf:ScaleBar> 
+                                <span id="output"></span>
+                            </div>
+                            <!-- FIN viewer/layout-center/layout-footer -->
+
+                        </div>
+                        <!-- FIN viewer/layout-center -->
+
+                        <!-- Sidebar -->
+                        <div class="ui-layout-west">
+
+                            <div class="ui-layout-header">
+                            </div>
+                            <!-- FIN viewer/layout-west (sidebar)/layout-header -->
+
+                            <div class="ui-layout-content">
+
+                                <div class="inner-ui-layout-north">
+
+                                    <div class="ui-layout-content">
+
+                                        <div>
+                                            <div class="ui-helper-reset ui-header ui-corner-top">
+                                                <h:outputText value="#{msg.panelThemesTitle}" />
+                                            </div>
+                                            <!-- LayerControl tree -->
+                                            <mf:LayerControl displayMode="tree" 
+                                                             deleteColumn="true" 
+                                                             styleClass="mfLayerControl tree">
+                                                
+                                            </mf:LayerControl>
+                                        </div>
+                                        <!-- FIN viewer/layout-west (sidebar)/layout-content/inner-layout-north/layout-content/collapsible-theme -->
+
+                                    </div>
+                                    <!-- FIN viewer/layout-west (sidebar)/layout-content/inner-layout-north/layout-content -->
+
+                                </div>
+                                <!-- FIN viewer/layout-west (sidebar)/layout-content/inner-layout-north -->
+
+                                <div class="inner-ui-layout-center">
+
+                                    <div class="ui-layout-content">
+
+                                        <div id="list_couche" class="collapsible">
+                                            <div>
+                                                <a href="#">
+                                                    <h:outputText value="#{msg.panelLayersTitle}" />
+                                                </a>
+                                            </div>
+                                            <div>
+                                                
+                                                <!-- LayerControl list -->
+                                                <mf:LayerControl id="list" 
+                                                                 action="#{geoviewer.addToBasket}" 
+                                                                 popupId="sldEditorPopup" 
+                                                                 displayMode="orderedlist onlyvisible"
+                                                                 ncWMSNumColorBands="false"
+                                                                 ncWMSToolsDataRequestId="dataRequestNcWMS">
+                                                </mf:LayerControl>
+                                                
+
+                                            </div>
+                                        </div>
+                                        <!-- FIN viewer/layout-west (sidebar)/layout-content/inner-layout-center/layout-content/collapsible-couches -->
+
+                                        <div id="list_legend" class="collapsible">
+                                            <div>
+                                                <a href="#">
+                                                    <h:outputText value="#{msg.panelLegendsTitle}" />
+                                                </a>
+                                            </div>
+                                            <div>
+                                                
+                                                <!-- LayerControl legends -->
+                                                <mf:LayerControl id="legends" 
+                                                                 displayMode="legends onlyvisible">                                                    
+                                                </mf:LayerControl>
+                                                
+                                            </div>
+                                        </div>
+                                        <!-- FIN viewer/layout-west (sidebar)/layout-content/inner-layout-center/layout-content/collapsible-legends -->
+
+                                        <div id="localisation" class="collapsible">
+                                            <div>
+                                                <a href="#">
+                                                    <h:outputText value="#{msg.panelLocalisationTitle}" />
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <div class="map" style="width:280px;height:140px;">
+                                                    
+                                                    <!-- locatormap -->
+                                                    <mf:Context id="locatorCtx" 
+                                                                service="/data/locatormap.xml"  
+                                                                activeNcWMS="true"
+                                                                loadAllGetCaps="true"
+                                                                useSessionOrRequestParams="false" >
+                                                        <mf:LocatorMap targetContextCompId="mainCtx"
+                                                                       maxExtent="#{geoviewer.maxExtentLocalisation}">
+                                                        </mf:LocatorMap>
+                                                    </mf:Context>
+                                                    
+                                                </div>
+                                                <fieldset style="border:none;margin-top:10px;">
+                                                    <div class="field select" id="viewerForm-recadrer">
+                                                        <label>
+                                                            <h:outputText value="#{msg.zoomToLabel}" />
+                                                        </label>
+                                                        <mf:ZoomList items="#{geoviewer.selectItems}" 
+                                                                     uiMapPaneId="mainMap"/>
+                                                    </div>
+                                                    <div class="field select" id="viewerForm-goTo">
+                                                        <label>
+                                                            <h:outputText value="#{msg.goToLabel}" />
+                                                        </label>
+                                                        <mf:Geonames onlyZoom="true" 
+                                                                     boxColor="red" 
+                                                                     jsversion="JQUERY" 
+                                                                     minimumCar="3" 
+                                                                     resultLimit="5" 
+                                                                     iconMarkerUrl="#{contextPath}/img/012.png" 
+                                                                     zoomPrecision="0.4"  
+                                                                     decimalPrecision="3" />
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                        <!-- FIN viewer/layout-west (sidebar)/layout-content/inner-layout-center/layout-content/collapsible-localization -->
+
+                                    </div>
+                                    <!-- FIN viewer/layout-west (sidebar)/layout-content/inner-layout-center/layout-content -->
+
+                                </div>
+                                <!-- FIN viewer/layout-west (sidebar)/layout-content/inner-layout-center -->
+
+                            </div>
+                            <!-- FIN viewer/layout-west (sidebar)/layout-content -->
+
+                        </div>
+                        <!-- FIN viewer/layout-west (sidebar) -->
+
+                    </div>
+                    <!-- FIN viewer -->
+
+                    <!-- container pour les outils de configuration des couches -->
+                    <div style="display:none" id="couche-setter"></div>
+
+                <!-- FIN mainContainer -->
+                </div>
+
+
+                <!-- Ajout de couches WMS -->
+                <a4j:region>
+                    <mf:ModalPopup id="wmsPopup" hidden="true" ajaxClose="true" width="500" height="365">
+                        <mf:WmsAddingTool contextId="mainCtx" 
+                                          layoutResults="tree" 
+                                          onAddButtonClick="hideWmsPopup();displayLoadingImg();window.MapFaces.destroyAllMaps();"
+                                          onAddButtonComplete="loadLayout();" 
+                                          onValidButtonClick="adjustWmsAddLoader();"
+                                          onValidButtonComplete="adjustWmsAddLoader();"
+                                          reRender="mainForm,wmsPopup"
+                                          value="#{geoviewer.WMSList}" 
+                                          />
+
+                        <mf:Div styleClass="wmsadd-loader">
+                            <a4j:status layout="block"
+                                        startStyleClass="wmsadd-loader-start" 
+                                        stopStyleClass="wmsadd-loader-stop" 
+                                        >
+                                <f:facet name="start" >
+                                    <div>
+                                        <img  src="#{contextPath}/img/ajax-loader.gif" alt="#{msg.loadingLabel}" />
+                                    </div>
+                                </f:facet>
+                            </a4j:status> 
+                        </mf:Div>
+                    </mf:ModalPopup>
+                 </a4j:region>
+
+                <!-- Editeur de style -->
+                <mf:ModalPopup id="sldEditorPopup" hidden="true" ajaxClose="true" width="500" height="300">
+                    <mf:SldEditor reRender="list,legends"></mf:SldEditor>
+                </mf:ModalPopup>
+                
+                <!-- Outil WPS -->
+                <mf:ModalPopup id="wpsPopup" hidden="true" ajaxClose="true" width="424" height="600">
+                    <mf:Div style="width:100%;height:100%;" rendered="#{geoviewer.WPSActive}">
+                        <div class="wps-container">
+                            <mf:wpsTool id="wps" 
+                                        onExecuteComplete="if(document.getElementById('xmlContainer').style.display='none'){document.getElementById('xmlButton').onclick();}"
+                                        xmlEditorId="xmlEditor"
+                                        xmlEditorRefreshFunc="xmlEditorRefresh"
+                                        wpsList="#{geoviewer.WPSList}" />
+                        </div>
+                        <div id="xmlButton"
+                             class="button-wps-xml disabled"
+                             onclick="updateXmlContainer(this, 'xmlContainer', $('.fullAbs')[2]);xmlEditorRefresh();"
+                             title="#{msg.wpsXMLButtonTip}">
+                        </div>
+                        <div id="xmlContainer" class="xml-container" style="display:none;">
+                            <mf:codeEditor id="xmlEditor"
+                                           codeType="xml"
+                                           jsVar="responseXml"
+                                           jsRefreshFunc="xmlEditorRefresh" />
+                        </div>
+                    </mf:Div>
+                </mf:ModalPopup>
+            </mf:Context>
+            
+            <!-- Impression de la carte -->
+            <mf:ModalPopup id="printPopup" hidden="true" ajaxClose="true" width="500" height="300">
+                <mf:MapPrinter  targetContext="mainCtx" />
+            </mf:ModalPopup>
+        </h:form>
+
+        <!-- Uploader un fichier context -->
+        <mf:ModalPopup id="uploadPopup" hidden="true" width="500" height="300">
+            <h:form enctype="multipart/form-data">
+                <input type="file" name="resumeFile" />
+                <h:commandButton value="#{msg.applyOWC}" action="#{geoviewer.uploadOWCFile}">
+                </h:commandButton>
+            </h:form>
+        </mf:ModalPopup>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:a4j="http://richfaces.org/a4j"
+        xmlns:rich="http://richfaces.org/rich"
+        xmlns:c="http://java.sun.com/jstl/core">
+<head>
+    <meta http-equiv="Refresh" content="0; URL=pages/geoviewer.xhtml"/>
+</head>
+<body>
+Error
+<br/><br/>
+Error code: <h:outputText value=" #{requestScope['javax.servlet.error.status_code']}"/>
+<br/><br/>
+Error message: <h:outputText value=" #{requestScope['javax.servlet.error.message']}"/>
+<br/><br/>
+Exception: <h:outputText value=" #{requestScope['javax.servlet.error.exception']}"/>
+<br/><br/>
+Exceptions stacktrace: <br/>
+<ui:repeat value="#{requestScope['javax.servlet.error.exception'].stackTrace}" var="item">                    
+    <h:outputText value="    #{item}"/>
+    <br/>
+</ui:repeat>
+</body>
+</html>
+      

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OWSContext version="0.3.0" id="ows-context-ex-1-v3" xmlns="http://www.opengis.net/ows-context"
+    xmlns:gml="http://www.opengis.net/gml"
+    xmlns:kml="http://www.opengis.net/kml/2.2"
+    xmlns:ogc="http://www.opengis.net/ogc"
+    xmlns:ows="http://www.opengis.net/ows"
+    xmlns:sld="http://www.opengis.net/sld"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.opengis.net/ows-context http://www.ogcnetwork.net/schemas/owc/0.3.0/owsContext.xsd">
+    <General>
+        <Window width="512" height="512"/>
+        <!--devrait etre EPSG:3857 mais coriolis ne marche pas avec cette projection, tant que ce n'est pas corrigé on utilise le mercator basique-->
+        <ows:BoundingBox crs="EPSG:3857">
+            <ows:LowerCorner>-20037507.067161847 -20037507.067161847</ows:LowerCorner>
+            <ows:UpperCorner>20037507.067161847 20037507.067161847</ows:UpperCorner>
+        </ows:BoundingBox>
+        <ows:Title>BlueMarble + Google (EPSG:3857) example </ows:Title>
+    </General>
+    <ResourceList>
+        <Layer name="BlueMarble" queryable="1" hidden="0" group="Raster" opacity="1">
+            <ows:Title>Blue Marble</ows:Title>
+            <ows:OutputFormat>image/png</ows:OutputFormat>
+            <Server service="urn:ogc:serviceType:WMS" version="1.3.0">
+                <OnlineResource xlink:type="simple" xlink:href="http://test.geomatys.com/cstl-trunk/WS/wms/default"/>
+            </Server>
+            <StyleList>
+                <Style current="1">
+                    <Name></Name>
+                    <Title>Default</Title>
+                </Style>
+                <Style>
+                    <Name>reliefShading</Name>
+                    <Title>Shaded relief</Title>
+                </Style>
+                <Style>
+                    <Name>histogram</Name>
+                    <Title>Contrast adjustment - Histogram</Title>
+                </Style>
+                <Style>
+                    <Name>normalize</Name>
+                    <Title>Contrast adjustment - Normalize</Title>
+                </Style>
+                <Style>
+                    <Name>gamma</Name>
+                    <Title>Contrast adjustment - Gamma 0.8</Title>
+                </Style>
+            </StyleList>
+        </Layer>
+        <Layer name="AO_Coriolis_(Temp)" queryable="1" hidden="0" group="Raster/Coriolis">
+            <ows:Title>Température</ows:Title>
+            <ows:OutputFormat>image/png</ows:OutputFormat>
+            <Server service="urn:ogc:serviceType:WMS" version="1.3.0">
+                <OnlineResource xlink:type="simple" xlink:href="http://test.geomatys.com/cstl-trunk/WS/wms/default"/>
+            </Server>
+        </Layer>
+      <Layer name="shp:tasmania_state_boundaries" queryable="1" hidden="0" group="Shapefiles">
+            <ows:Title>Tasmania state boundaries</ows:Title>
+            <ows:OutputFormat>image/png</ows:OutputFormat>
+            <Server service="urn:ogc:serviceType:WMS" version="1.3.0">
+                <OnlineResource xlink:type="simple" xlink:href="http://test.geomatys.com/cstl-trunk/WS/wms/default"/>
+            </Server>
+            <StyleList>
+                <Style  current="1">
+                    <Name></Name>
+                    <Title>Default (Green)</Title>
+                </Style>
+                <Style>
+                    <Name>PolygonOrange</Name>
+                    <Title>Orange</Title>
+                </Style>
+                <Style>
+                    <Name>PolygonCyan</Name>
+                    <Title>Cyan</Title>
+                </Style>
+            </StyleList>
+        </Layer>
+    <Layer name="shp:tasmania_water_bodies" queryable="1" hidden="0" group="Shapefiles">
+            <ows:Title>Tasmania water bodies</ows:Title>
+            <ows:OutputFormat>image/png</ows:OutputFormat>
+            <Server service="urn:ogc:serviceType:WMS" version="1.3.0">
+                <OnlineResource xlink:type="simple" xlink:href="http://test.geomatys.com/cstl-trunk/WS/wms/default"/>
+            </Server>
+            <StyleList>
+                <Style  current="1">
+                    <Name></Name>
+                    <Title>Default (Blue)</Title>
+                </Style>
+                <Style>
+                    <Name>PolygonGreen</Name>
+                    <Title>Green</Title>
+                </Style>
+                <Style>
+                    <Name>PolygonRed</Name>
+                    <Title>Red</Title>
+                </Style>
+                <Style>
+                    <SLD>
+                        <Name>defaultPolygon.xml</Name>
+                        <Title>SLD: default</Title>
+                        <OnlineResource xlink:type="simple" xlink:href="data/sld/defaultPolygon.xml"/>
+                    </SLD>
+                </Style>
+            </StyleList>
+            <MetadataURL>
+                <OnlineResource xlink:type="simple" xlink:href="http://www.ifremer.fr/sextant/srv/fr/iso19115to19139.xml?id=189"/>
+            </MetadataURL>
+            <DataURL>
+                <OnlineResource xlink:type="simple" xlink:href="data/iso19110/tasmania_water_bodies.xml"/>
+            </DataURL>
+        </Layer>
+<!--        <Layer name="shp:tasmania_roads" queryable="1" hidden="0" group="Shapefiles">
+            <ows:Title>Tasmania roads</ows:Title>
+            <ows:OutputFormat>image/png</ows:OutputFormat>
+            <Server service="urn:ogc:serviceType:WMS" version="1.3.0">
+                <OnlineResource xlink:type="simple" xlink:href="http://test.geomatys.com/cstl-trunk/WS/wms/default"/>
+            </Server>
+            <StyleList>
+                <Style  current="1">
+                    <Name></Name>
+                    <Title>Default (LineRed2)</Title>
+                </Style>
+                <Style>
+                    <Name>LineRed4</Name>
+                    <Title>LineRed4</Title>
+                </Style>
+                <Style>
+                    <Name>LineRed6</Name>
+                    <Title>LineRed6</Title>
+                </Style>
+                <Style>
+                    <SLD>
+                        <Name>defaultLine.xml</Name>
+                        <Title>SLD: default</Title>
+                        <OnlineResource xlink:type="simple" xlink:href="data/sld/defaultLine.xml"/>
+                    </SLD>
+                </Style>
+            </StyleList>
+            <DataURL>
+                <OnlineResource xlink:type="simple" xlink:href="data/iso19110/tasmania_roads.xml"/>
+            </DataURL>
+        </Layer>
+        <Layer name="shp:tasmania_cities" queryable="1" hidden="0" group="Shapefiles">
+            <ows:Title>Tasmania cities</ows:Title>
+            <ows:OutputFormat>image/png</ows:OutputFormat>
+            <Server service="urn:ogc:serviceType:WMS" version="1.3.0">
+                <OnlineResource xlink:type="simple" xlink:href="http://test.geomatys.com/cstl-trunk/WS/wms/default"/>
+            </Server>
+            <StyleList>
+                <Style  current="1">
+                    <Name></Name>
+                    <Title>Default (PointCircleBlack12)</Title>
+                </Style>
+                <Style>
+                    <Name>PointCrossBlack12</Name>
+                    <Title>Cross</Title>
+                </Style>
+                <Style>
+                    <Name>PointSquareBlack12</Name>
+                    <Title>Square</Title>
+                </Style>
+                <Style>
+                    <Name>PointStarBlack12</Name>
+                    <Title>Star</Title>
+                </Style>
+                <Style>
+                    <Name>PointTriangleBlack12</Name>
+                    <Title>Triangle</Title>
+                </Style>
+                <Style>
+                    <SLD>
+                        <Name>defaultPoint.xml</Name>
+                        <Title>SLD: default</Title>
+                        <OnlineResource xlink:type="simple" xlink:href="data/sld/defaultPoint.xml"/>
+                    </SLD>
+                </Style>
+            </StyleList>
+            <DataURL>
+                <OnlineResource xlink:type="simple" xlink:href="data/iso19110/tasmania_cities.xml"/>
+            </DataURL>
+        </Layer>-->
+        <!--Layer name="EuroSITES" queryable="1" hidden="0" group="Ifremer">
+            <ows:Title>EuroSITES</ows:Title>
+            <ows:OutputFormat>image/png</ows:OutputFormat>
+            <Server service="urn:ogc:serviceType:WMS" version="1.3.0">
+                <OnlineResource xlink:type="simple" xlink:href="http://www.ifremer.fr/services/wms/swe"/>
+            </Server>
+        </Layer-->
+    </ResourceList>
+</OWSContext>

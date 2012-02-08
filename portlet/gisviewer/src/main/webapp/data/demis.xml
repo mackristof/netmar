@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OWSContext version="0.3.0" id="ows-context-ex-1-v3" xmlns="http://www.opengis.net/ows-context" 
+            xmlns:gml="http://www.opengis.net/gml"
+            xmlns:kml="http://www.opengis.net/kml/2.2"
+            xmlns:ogc="http://www.opengis.net/ogc"
+            xmlns:ows="http://www.opengis.net/ows"
+            xmlns:sld="http://www.opengis.net/sld"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.opengis.net/ows-context http://www.ogcnetwork.net/schemas/owc/0.3.0/owsContext.xsd">
+    <General>
+        <Window width="280" height="140"/>
+        
+        <!-- préférer 84 à 4326 pour compatibilité ncwms -->
+        <ows:BoundingBox crs="CRS:84">
+            <ows:LowerCorner>-180 -90</ows:LowerCorner>
+            <ows:UpperCorner>180 90</ows:UpperCorner>
+        </ows:BoundingBox>
+        
+        <!--ows:BoundingBox crs="EPSG:3857">
+            <ows:LowerCorner>-20037507.067161847 -20037507.067161847</ows:LowerCorner>
+            <ows:UpperCorner>20037507.067161847 20037507.067161847</ows:UpperCorner>
+        </ows:BoundingBox-->
+        
+        <!--ows:BoundingBox crs="EPSG:4326">
+            <ows:LowerCorner>-90 -180</ows:LowerCorner>
+            <ows:UpperCorner>90 180</ows:UpperCorner>
+        </ows:BoundingBox-->
+        
+        <ows:Title>OWS Context version 0.3.0, BlueMarble WGS84 example</ows:Title>
+    </General>
+    <ResourceList>
+        <Layer queryable="false" opacity="1" hidden="false"  id="2" name="continent">
+            <ows:Title>continent</ows:Title>
+            <ows:OutputFormat>image/png</ows:OutputFormat>
+            <Server version="1.1.1" service="urn:ogc:serviceType:WMS" default="true">
+                <OnlineResource xlink:href="http://www.ifremer.fr/services/wms/wmsproxy.cgi"/>
+            </Server>
+        </Layer>
+        
+        <!--Layer name="shp:tasmania_water_bodies" queryable="1" hidden="0" group="Shapefiles">
+            <ows:Title>Tasmania water bodies</ows:Title>
+            <ows:OutputFormat>image/png</ows:OutputFormat>
+            <Server service="urn:ogc:serviceType:WMS" version="1.3.0">
+                <OnlineResource xlink:type="simple" xlink:href="http://test.geomatys.com/cstl-trunk/WS/wms/default"/>
+            </Server>
+            <StyleList>
+                <Style  current="1">
+                    <Name></Name>
+                    <Title>Default (Blue)</Title>
+                </Style>
+                <Style>
+                    <Name>PolygonGreen</Name>
+                    <Title>Green</Title>
+                </Style>
+                <Style>
+                    <Name>PolygonRed</Name>
+                    <Title>Red</Title>
+                </Style>
+                <Style>
+                    <SLD>
+                        <Name>defaultPolygon.xml</Name>
+                        <Title>SLD: default</Title>
+                        <OnlineResource xlink:type="simple" xlink:href="data/sld/defaultPolygon.xml"/>
+                    </SLD>
+                </Style>
+            </StyleList>
+            <MetadataURL>
+                <OnlineResource xlink:type="simple" xlink:href="http://localhost:9080/md19115.xml"/>
+            </MetadataURL>
+        </Layer-->
+        
+        <!--Layer group="Monde" name="Bathymetry,Countries,Topography,Hillshading,Builtup areas,Coastlines,Waterbodies,Inundated,Rivers,Streams,Railroads,Highways,Roads,Trails,Borders,Cities,Settlements,Spot elevations,Airports,Ocean features" queryable="0" hidden="0">
+            <ows:Title>Demis world map</ows:Title>
+            <ows:OutputFormat>image/jpg</ows:OutputFormat>
+            <Server service="urn:ogc:serviceType:WMS" version="1.3.0">
+                <OnlineResource xlink:type="simple" xlink:href="http://www2.demis.nl/WMS/wms.asp?wms=WorldMap"/>
+            </Server>            
+            <StyleList>
+                <Style current="1">
+                    <Name></Name>
+                    <Title>Default</Title>
+                    <LegendURL>
+                        <OnlineResource xlink:type="simple" xlink:href="http://www2.demis.nl/wms/wms.ashx?WMS=WorldMap&amp;VERSION=1.1.0&amp;Format=image/png&amp;Request=Legend&amp;Layers=Bathymetry,Countries,Topography,Hillshading,Builtup%20areas,Coastlines,Waterbodies,Inundated,Rivers,Streams,Railroads,Highways,Roads,Trails,Borders,Cities,Settlements,Spot%20elevations,Airports,Ocean%20features"/>
+                    </LegendURL>
+                </Style>
+            </StyleList>
+        </Layer>-->
+    </ResourceList>
+</OWSContext>

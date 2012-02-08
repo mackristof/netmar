@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:mf="http://mapfaces.org/taglib"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:f="http://java.sun.com/jsf/core"
+                 xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <head>
+        <title>Sextant</title>
+
+        <!-- Meta Tags -->
+        <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
+        <meta name="robots" content="index, follow" />
+
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="des mondes singuliers" />
+
+    <c:set var="contextPath" value="#{facesContext.externalContext.requestContextPath}" />
+</head>
+<body>
+<h:form id="mainForm" class="geoviewerForm">
+    <h:outputText value="#{geoviewer.shareSession}" />
+</h:form>
+
+</body>
+</html>
