@@ -1,171 +1,352 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-   
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>fr.ifremer</groupId>
-    <artifactId>sxt-geoviewer</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
-    <name>Geoviewer</name>
 
-    <build>
-        <plugins>
-            <!-- ======================================================= -->
-            <!--     Compress                                            -->
-            <!-- ======================================================= -->
-            <plugin>
-                <groupId>net.sf.alchim</groupId>
-                <artifactId>yuicompressor-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compress</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <!--Don't compress these files -->
-                    <excludes>
-                        <exclude>**/*.gz.*</exclude>
-                        <exclude>**/all.*</exclude>
-                        <exclude>**/*-min.*</exclude>
-                        <exclude>**/*.min.*</exclude>
-                        <exclude>**/*-bs.*</exclude>
-                        <exclude>**/*mapfaces*</exclude>
-                        <exclude>**/*-yc.*</exclude>
-                        <exclude>**/*.pack.*</exclude>
-                    </excludes>
-                    <nomunge>true</nomunge>
-                    <jswarn>false</jswarn>
-                    <aggregations>
+	<groupId>fr.ifremer</groupId>
+	<artifactId>sxt-geoviewer-portlet</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>Geoviewer</name>
 
-                       <!--####################################################
+	<build>
+		<plugins>
+			<!-- ======================================================= -->
+			<!-- Compress -->
+			<!-- ======================================================= -->
+			<plugin>
+				<groupId>net.sf.alchim</groupId>
+				<artifactId>yuicompressor-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compress</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<!--Don't compress these files -->
+					<excludes>
+						<exclude>**/*.gz.*</exclude>
+						<exclude>**/all.*</exclude>
+						<exclude>**/*-min.*</exclude>
+						<exclude>**/*.min.*</exclude>
+						<exclude>**/*-bs.*</exclude>
+						<exclude>**/*mapfaces*</exclude>
+						<exclude>**/*-yc.*</exclude>
+						<exclude>**/*.pack.*</exclude>
+					</excludes>
+					<nomunge>true</nomunge>
+					<jswarn>false</jswarn>
+					<aggregations>
 
-                                              JavaScript
+						<!--#################################################### JavaScript 
+							##################################################### -->
 
-                        #####################################################-->
+						<!-- Geoviewer -->
+						<aggregation>
+							<removeIncluded>false</removeIncluded>
+							<output>${project.build.directory}/${project.build.finalName}/js/sxt-geoviewer.js</output>
+							<includes>
+								<include>${basedir}/src/main/webapp/js/lib/jquery-1.4.2.min.js</include>
+								<include>${basedir}/src/main/webapp/js/lib/jquery-ui-1.8.2-all/jquery-ui-1.8.2.all.min.js</include>
+								<include>${basedir}/src/main/webapp/js/lib/jquery.layout-1.3.0RC29.1.min.js</include>
+								<include>${basedir}/src/main/webapp/js/lib/jquery.collapsible.v1.0.0.min.js</include>
+								<include>${basedir}/src/main/webapp/js/lib/jquery.volet.v1.0.0.min.js</include>
+								<include>${project.build.directory}/${project.build.finalName}/js/geoviewer-min.js</include>
+								<include>${project.build.directory}/${project.build.finalName}/js/init-min.js</include>
+							</includes>
+						</aggregation>
 
-                        <!-- Geoviewer -->
-                        <aggregation>
-                            <removeIncluded>false</removeIncluded>
-                            <output>${project.build.directory}/${project.build.finalName}/js/sxt-geoviewer.js</output>
-                            <includes>
-                                <include>${basedir}/src/main/webapp/js/lib/jquery-1.4.2.min.js</include>
-                                <include>${basedir}/src/main/webapp/js/lib/jquery-ui-1.8.2-all/jquery-ui-1.8.2.all.min.js</include>
-                                <include>${basedir}/src/main/webapp/js/lib/jquery.layout-1.3.0RC29.1.min.js</include>
-                                <include>${basedir}/src/main/webapp/js/lib/jquery.collapsible.v1.0.0.min.js</include>
-                                <include>${basedir}/src/main/webapp/js/lib/jquery.volet.v1.0.0.min.js</include>
-                                <include>${project.build.directory}/${project.build.finalName}/js/geoviewer-min.js</include>
-                                <include>${project.build.directory}/${project.build.finalName}/js/init-min.js</include>
-                            </includes>
-                        </aggregation>
+						<!--#################################################### CSS ##################################################### -->
 
-                        <!--####################################################
+						<!-- Geoviewer -->
+						<aggregation>
+							<removeIncluded>false</removeIncluded>
+							<output>${project.build.directory}/${project.build.finalName}/css/sxt-geoviewer.css</output>
+							<includes>
+								<include>${project.build.directory}/${project.build.finalName}/css/jquery-ui-1.8.2/sextant/jquery-ui-1.8.2.custom-min.css</include>
+								<include>${project.build.directory}/${project.build.finalName}/css/main-min.css</include>
+							</includes>
+						</aggregation>
+					</aggregations>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
-                                              CSS
+	<properties>
 
-                        #####################################################-->
+		<!-- SNAPSHOTS -->
+		<geotoolkit.version>3.x-SNAPSHOT</geotoolkit.version>
+		<mapfaces.version>0.44.1-SNAPSHOT</mapfaces.version>
 
-                        <!-- Geoviewer -->
-                        <aggregation>
-                            <removeIncluded>false</removeIncluded>
-                            <output>${project.build.directory}/${project.build.finalName}/css/sxt-geoviewer.css</output>
-                            <includes>
-                                <include>${project.build.directory}/${project.build.finalName}/css/jquery-ui-1.8.2/sextant/jquery-ui-1.8.2.custom-min.css</include>
-                                <include>${project.build.directory}/${project.build.finalName}/css/main-min.css</include>
-                            </includes>
-                        </aggregation>
-                    </aggregations>
-                 </configuration>
-             </plugin>
-        </plugins>
-    </build>
+		<!-- RELEASE -->
+		<jsf.version>1.2_15</jsf.version>
+		<facelet.version>1.1.15</facelet.version>
+		<portletbridge.version>2.1.0.FINAL</portletbridge.version>
+		<richfaces.version>3.3.3.Final</richfaces.version>
+		<spring.version>1.3.0.RELEASE</spring.version>
+		<postgresql.version>9.0-801.jdbc4</postgresql.version>
+		<liferay.version>6.0.5</liferay.version>
 
-    <dependencies>
+	</properties>
+	<dependencyManagement>
+		<dependencies>
 
-        <!-- JSF -->
-        <dependency>
-            <groupId>com.sun.facelets</groupId>
-            <artifactId>jsf-facelets</artifactId>
-            <version>1.1.15</version>
-        </dependency>
+			<!-- JSTL, JSP, Servlet, Portlet -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>2.5</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>2.1</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.portlet</groupId>
+				<artifactId>portlet-api</artifactId>
+				<version>2.0</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>jstl</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.2</version>
+			</dependency>
 
-        <!-- Mapfaces -->
-        <dependency>
-            <groupId>org.mapfaces</groupId>
-            <artifactId>mapfaces-io</artifactId>
-            <version>0.44.1-SNAPSHOT</version>
-        </dependency>
+			<!-- JSF -->
+			<dependency>
+				<groupId>javax.faces</groupId>
+				<artifactId>jsf-api</artifactId>
+				<version>${jsf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.faces</groupId>
+				<artifactId>jsf-impl</artifactId>
+				<version>${jsf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.facelets</groupId>
+				<artifactId>jsf-facelets</artifactId>
+				<version>${facelet.version}</version>
+			</dependency>
 
-        <!-- JBOSS Portlet Bridge -->
-        <dependency>
-            <groupId>org.jboss.portletbridge</groupId>
-            <artifactId>portletbridge-api</artifactId>
-            <version>2.1.0.FINAL</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.portletbridge</groupId>
-            <artifactId>portletbridge-impl</artifactId>
-            <version>2.1.0.FINAL</version>
-        </dependency>
+			<!-- xerces dependency for xml parser -->
+			<dependency>
+				<groupId>xerces</groupId>
+				<artifactId>xercesImpl</artifactId>
+				<version>2.7.1</version>
+			</dependency>
 
-     <!-- Xalan dependency. necessary for deployment of portlets.war  by liferay admin interface
-     if you change the version, verify you can still deploy the war-->
-        <dependency>
-            <groupId>xalan</groupId>
-            <artifactId>xalan</artifactId>
-            <version>2.6.0</version>
-        </dependency>
+			<!-- Xalan dependency. necessary for deployment of portlets.war by liferay 
+				admin interface if you change the version, verify you can still deploy the 
+				war -->
+			<dependency>
+				<groupId>xalan</groupId>
+				<artifactId>xalan</artifactId>
+				<version>2.6.0</version>
+			</dependency>
 
-        <!-- IFREMER -->
-        <dependency>
-            <groupId>fr.ifremer</groupId>
-            <artifactId>portlet-util</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
-    
-     <repositories>
-        <repository>
-            <id>java.net.1</id>
-            <name>java.net community</name>
-            <url>http://download.java.net/maven/1</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <layout>legacy</layout>
-        </repository>
-        <repository>
-            <id>java.net.2</id>
-            <name>java.net community</name>
-            <url>http://download.java.net/maven/2</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>jboss</id>
-            <name>JBoss Repository</name>
-            <url>https://repository.jboss.org/nexus/content/groups/public</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        
+			<!-- Mapfaces -->
+			<dependency>
+				<groupId>org.mapfaces</groupId>
+				<artifactId>mapfaces-map</artifactId>
+				<version>${mapfaces.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mapfaces</groupId>
+				<artifactId>mapfaces-io</artifactId>
+				<version>${mapfaces.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mapfaces</groupId>
+				<artifactId>mapfaces-portlet</artifactId>
+				<version>${mapfaces.version}</version>
+			</dependency>
 
-        <!--SNAPSHOT repositories -->
-        <repository>
-            <id>geomatys</id>
-            <name>Geomatys et ses dépendances spécifiques</name>
-            <url>http://maven.geomatys.com</url>
-        </repository>
-        <repository>
-            <id>geotoolkit</id>
-            <name>Geotoolkit</name>
-            <url>http://maven.geotoolkit.org</url>
-        </repository>
-    </repositories>
+			<!-- Geotk-pending -->
+			<dependency>
+				<groupId>org.geotoolkit</groupId>
+				<artifactId>geotk-logging-log4j</artifactId>
+				<version>${geotoolkit.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.geotoolkit</groupId>
+				<artifactId>geotk-xml-base</artifactId>
+				<version>${geotoolkit.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.geotoolkit.pending</groupId>
+				<artifactId>geotk-xml-wcs</artifactId>
+				<version>${geotoolkit.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.geotoolkit.pending</groupId>
+				<artifactId>geotk-xml-wfs</artifactId>
+				<version>${geotoolkit.version}</version>
+			</dependency>
+
+			<!-- Liferay -->
+			<dependency>
+				<groupId>com.liferay.portal</groupId>
+				<artifactId>portal-service</artifactId>
+				<version>${liferay.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.liferay.portal</groupId>
+				<artifactId>util-bridges</artifactId>
+				<version>${liferay.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.liferay.portal</groupId>
+				<artifactId>util-taglib</artifactId>
+				<version>${liferay.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.liferay.portal</groupId>
+				<artifactId>util-java</artifactId>
+				<version>${liferay.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- Postgres jdbc -->
+			<dependency>
+				<groupId>postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>${postgresql.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- JBOSS PortletBridge -->
+			<dependency>
+				<groupId>org.jboss.portletbridge</groupId>
+				<artifactId>portletbridge-api</artifactId>
+				<version>${portletbridge.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.portletbridge</groupId>
+				<artifactId>portletbridge-impl</artifactId>
+				<version>${portletbridge.version}</version>
+			</dependency>
+
+			<!-- Spring framework ldap -->
+			<dependency>
+				<groupId>org.springframework.ldap</groupId>
+				<artifactId>spring-ldap-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.ldap</groupId>
+				<artifactId>spring-ldap-core-tiger</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<!-- Tests -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.7</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+
+		<!-- JSF -->
+		<dependency>
+			<groupId>com.sun.facelets</groupId>
+			<artifactId>jsf-facelets</artifactId>
+			<version>1.1.15</version>
+		</dependency>
+
+		<!-- Mapfaces -->
+		<dependency>
+			<groupId>org.mapfaces</groupId>
+			<artifactId>mapfaces-io</artifactId>
+			<version>0.44.1-SNAPSHOT</version>
+		</dependency>
+
+		<!-- JBOSS Portlet Bridge -->
+		<dependency>
+			<groupId>org.jboss.portletbridge</groupId>
+			<artifactId>portletbridge-api</artifactId>
+			<version>2.1.0.FINAL</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.portletbridge</groupId>
+			<artifactId>portletbridge-impl</artifactId>
+			<version>2.1.0.FINAL</version>
+		</dependency>
+
+		<!-- Xalan dependency. necessary for deployment of portlets.war by liferay 
+			admin interface if you change the version, verify you can still deploy the 
+			war -->
+		<dependency>
+			<groupId>xalan</groupId>
+			<artifactId>xalan</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+
+		<!-- IFREMER -->
+		<dependency>
+			<groupId>fr.ifremer</groupId>
+			<artifactId>portlet-util</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>java.net.1</id>
+			<name>java.net community</name>
+			<url>http://download.java.net/maven/1</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<layout>legacy</layout>
+		</repository>
+		<repository>
+			<id>java.net.2</id>
+			<name>java.net community</name>
+			<url>http://download.java.net/maven/2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>jboss</id>
+			<name>JBoss Repository</name>
+			<url>https://repository.jboss.org/nexus/content/groups/public</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+
+		<!--SNAPSHOT repositories -->
+		<repository>
+			<id>geomatys</id>
+			<name>Geomatys et ses dépendances spécifiques</name>
+			<url>http://maven.geomatys.com</url>
+		</repository>
+		<repository>
+			<id>geotoolkit</id>
+			<name>Geotoolkit</name>
+			<url>http://maven.geotoolkit.org</url>
+		</repository>
+	</repositories>
 
 </project>
