@@ -40,7 +40,7 @@ public class GeoviewerController implements Serializable {
 
     private static Logger LOGGER = Logger.getLogger(GeoviewerController.class.getName());
     private static String KEY = "mainCtx";
-    private Object ctxService = "/data/demis.xml";
+    private Object ctxService = "/data/Netmar.xml";
     private String currentCommunity;
     private SextantConfig sextantConfig;
     

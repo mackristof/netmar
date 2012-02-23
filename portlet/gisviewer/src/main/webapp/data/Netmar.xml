@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ows-context:OWSContext xmlns:ows-context="http://www.opengis.net/ows-context" xmlns:ows="http://www.opengis.net/ows" xmlns:sld="http://www.opengis.net/sld" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ogc="http://www.opengis.net/ogc" xmlns:gml="http://www.opengis.net/gml" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:ns9="http://www.w3.org/2005/Atom" xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0" xmlns:ins="http://www.inspire.org" xmlns:context="http://www.opengis.net/context" id="ows-context-ex-1-v3" version="0.3.0">
+    <ows-context:General>
+        <ows-context:Window height="672" width="1240"/>
+<!--
+        <ows:BoundingBox crs="EPSG:4326">
+            <ows:LowerCorner>-90.0 -180.0</ows:LowerCorner>
+            <ows:UpperCorner>90.0 180.0</ows:UpperCorner>
+        </ows:BoundingBox>
+-->
+
+        <!-- epsg 84 for compatibility with ncwms -->
+        <ows:BoundingBox crs="CRS:84">
+            <ows:LowerCorner>-180.0 -90.0</ows:LowerCorner>
+            <ows:UpperCorner>180.0 90.0</ows:UpperCorner>
+        </ows:BoundingBox>
+
+        <ows:Title>Netmar</ows:Title>
+        <ows:Abstract></ows:Abstract>
+    </ows-context:General>
+    <ows-context:ResourceList>
+<!--
+        <ows-context:Layer queryable="true" opacity="1" hidden="false" group="Monde" id="1" name="basic">
+            <ows:Title>Metacarta</ows:Title>
+            <ows:OutputFormat>image/png</ows:OutputFormat>
+            <ows-context:Server version="1.1.1" service="urn:ogc:serviceType:WMS" default="true">
+                <ows-context:OnlineResource xlink:href="http://vmap0.tiles.osgeo.org/wms/vmap0"/>
+            </ows-context:Server>
+        </ows-context:Layer>
+-->
+        <ows-context:Layer queryable="false" opacity="1" hidden="false" group="" id="1" name="continent">
+            <ows:Title>Continent</ows:Title>
+            <ows:OutputFormat>image/png</ows:OutputFormat>
+            <ows-context:Server version="1.1.1" service="urn:ogc:serviceType:WMS" default="true">
+                <ows-context:OnlineResource xlink:href="http://www.ifremer.fr/services/wms/wmsproxy.cgi"/>
+            </ows-context:Server>
+        </ows-context:Layer>
+        <ows-context:Layer queryable="false" opacity="1" hidden="false" group="" id="2" name="ETOPO1_BATHY_R">
+            <ows:Title>Bathymetry</ows:Title>
+            <ows:OutputFormat>image/png</ows:OutputFormat>
+            <ows-context:Server version="1.1.1" service="urn:ogc:serviceType:WMS" default="true">
+                <ows-context:OnlineResource xlink:href="http://www.ifremer.fr/services/wms1"/>
+            </ows-context:Server>
+        </ows-context:Layer>
+
+    </ows-context:ResourceList>
+</ows-context:OWSContext>
